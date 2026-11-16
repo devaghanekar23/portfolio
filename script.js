@@ -118,7 +118,7 @@ form.addEventListener('submit', async e => {
 
 // Scroll reveal animation for elements
 if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  const revealElements = document.querySelectorAll('.card, .skills li, .certs a, .about > div, .about-img, .edu-item, .contact > div, .form');
+  const revealElements = document.querySelectorAll('.card, .skills li, .certs a, .about > div, .about-img, .edu-item, .contact > div, .form, .pipe-step, .terminal-card');
   revealElements.forEach(el => el.classList.add('reveal-init'));
 
   const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -369,4 +369,529 @@ document.getElementById('year').textContent = new Date().getFullYear();
     resize();
     animId = requestAnimationFrame(draw);
   })();
+})();
+
+// ===== Interactive New Features =====
+
+// 1. Certificate Lightbox Modal
+(function initCertModal() {
+  const certModal = document.getElementById('certModal');
+  const certImg = document.getElementById('certImg');
+  const certTitle = document.getElementById('certTitle');
+  const certDownload = document.getElementById('certDownload');
+  const certClose = document.getElementById('certClose');
+  const certBackdrop = document.getElementById('certBackdrop');
+
+  if (!certModal || !certImg) return;
+
+  function openModal(href, title) {
+    certImg.src = href;
+    certImg.alt = title || 'Certificate preview';
+    if (certTitle) certTitle.textContent = title || 'Certificate Preview';
+    if (certDownload) certDownload.href = href;
+    certModal.classList.add('open');
+    certModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    certModal.classList.remove('open');
+    certModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.certs a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const href = link.getAttribute('href');
+      const title = link.getAttribute('data-title') || link.querySelector('span')?.textContent || 'Certificate';
+      openModal(href, title);
+    });
+  });
+
+  if (certClose) certClose.addEventListener('click', closeModal);
+  if (certBackdrop) certBackdrop.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && certModal.classList.contains('open')) {
+      closeModal();
+    }
+  });
+})();
+
+// 2. Project Category Filter
+(function initProjectFilters() {
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+
+  if (!filterBtns.length || !projectCards.length) return;
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+
+      projectCards.forEach(card => {
+        const cats = (card.dataset.cat || '').split(' ');
+        if (filter === 'all' || cats.includes(filter)) {
+          card.classList.remove('hide');
+        } else {
+          card.classList.add('hide');
+        }
+      });
+    });
+  });
+})();
+
+// 3. Quick Copy Email & Floating Toast Notification
+(function initCopyEmail() {
+  const toastEl = document.getElementById('toast');
+  let toastTimer = null;
+
+  function showToast(message, icon = 'fa-check') {
+    if (!toastEl) return;
+    toastEl.innerHTML = `<i class="fas ${icon}"></i> <span>${message}</span>`;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toastEl.classList.remove('show');
+    }, 2800);
+  }
+
+  document.querySelectorAll('.copy-email-btn').forEach(btn => {
+    btn.addEventListener('click', async e => {
+      e.stopPropagation();
+      const email = btn.dataset.email || 'devaghanekar23@gmail.com';
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(email);
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = email;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        }
+        showToast('Email copied to clipboard!');
+        const icon = btn.querySelector('i');
+        if (icon) {
+          icon.className = 'fas fa-check';
+          setTimeout(() => { icon.className = 'far fa-copy'; }, 2000);
+        }
+      } catch (err) {
+        showToast('Failed to copy email', 'fa-circle-xmark');
+      }
+    });
+  });
+})();
+
+// 4. Interactive DevOps Cloud Terminal
+(function initDevOpsTerminal() {
+  const terminal = document.getElementById('terminal');
+  const termBody = document.getElementById('termBody');
+  const termOutput = document.getElementById('termOutput');
+  const termForm = document.getElementById('termForm');
+  const termInput = document.getElementById('termInput');
+  const chips = document.querySelectorAll('.term-chip');
+  if (!terminal || !termOutput || !termInput) return;
+
+  const history = [];
+  let histIndex = -1;
+
+  const COMMANDS = {
+    help: () => `
+<span class="term-cyan">DevOps Cloud Control Shell v2.4 (x86_64-aws-linux)</span>
+<span class="term-dim">--------------------------------------------------</span>
+<span class="term-cmd-text">Available Commands:</span>
+  <span class="term-cyan">kubectl get pods</span>   View live Kubernetes pods & container health
+  <span class="term-cyan">docker ps</span>          List running production Docker containers
+  <span class="term-cyan">aws status</span>         Inspect AWS cloud VPC, ECS & region details
+  <span class="term-cyan">skills</span>             Display full engineering tech stack
+  <span class="term-cyan">projects</span>           List featured DevOps & fullstack deployments
+  <span class="term-cyan">whoami</span>             View Devendra Ghanekar profile summary
+  <span class="term-cyan">contact</span>            Display verified email, location & links
+  <span class="term-cyan">resume</span>             Download official Resume PDF
+  <span class="term-cyan">uptime</span>             Check simulated cluster uptime & system load
+  <span class="term-cyan">clear</span>              Clear the terminal display
+`,
+    kubectl: () => `
+<span class="term-dim">$ kubectl get pods -n production --show-labels</span>
+<span class="term-dim">NAME                             READY   STATUS    RESTARTS   AGE   LABELS</span>
+eventhub-web-84f9b2d-v7x2        <span class="term-green">1/1     Running</span>   0          4d    app=eventhub,tier=frontend
+weather-helm-api-7b8ac1-9kx4     <span class="term-green">1/1     Running</span>   0          6d    app=weather,tier=backend
+hearth-fargate-task-3df8-nm9     <span class="term-green">1/1     Running</span>   0          11d   app=recipe,tier=fullstack
+devops-cicd-runner-52bc-4tz1     <span class="term-green">1/1     Running</span>   0          18d   app=jenkins,tier=pipeline
+aws-ingress-alb-controller-01    <span class="term-green">1/1     Running</span>   0          30d   app=ingress,tier=networking
+<span class="term-green">✓ All 5 workloads healthy & actively serving requests.</span>
+`,
+    docker: () => `
+<span class="term-dim">$ docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"</span>
+<span class="term-dim">CONTAINER ID   IMAGE                          STATUS          PORTS</span>
+7f8a920b1c3e   eventhub/frontend:v2.1         <span class="term-green">Up 4 days</span>       0.0.0.0:3000->3000/tcp
+4e1c980b3d2a   deva/weather-helm-api:latest   <span class="term-green">Up 6 days</span>       0.0.0.0:8080->8080/tcp
+1b3d58a7c9ef   hearth/ecs-fargate:prod        <span class="term-green">Up 11 days</span>      0.0.0.0:5000->5000/tcp
+9c4e21a8d05b   jenkins/jenkins:lts-jdk17      <span class="term-green">Up 18 days</span>      0.0.0.0:8080->8080/tcp
+<span class="term-cyan">4 containers active. Total memory allocated: 3.4 GiB / 8.0 GiB</span>
+`,
+    aws: () => `
+<span class="term-dim">$ aws ec2 describe-availability-zones && aws ecs describe-clusters</span>
+<span class="term-cmd-text">Cloud Region  :</span> <span class="term-cyan">ap-south-1 (Mumbai, India)</span>
+<span class="term-cmd-text">VPC Network   :</span> vpc-0a819b2f34 (CIDR: 10.0.0.0/16 | 2 Public, 2 Private Subnets)
+<span class="term-cmd-text">ECS Cluster   :</span> prod-deva-cluster <span class="term-green">[ACTIVE - 3 Fargate Tasks]</span>
+<span class="term-cmd-text">ECR Registry  :</span> 4539821098.dkr.ecr.ap-south-1.amazonaws.com
+<span class="term-cmd-text">Security      :</span> AWS WAF Active, TLS 1.3 Strict, IAM Least-Privilege
+<span class="term-green">✓ Cloud infrastructure status: OPERATIONAL (99.98% uptime)</span>
+`,
+    skills: () => `
+<span class="term-cmd-text">Technical Stack Matrix:</span>
+  <span class="term-cyan">Cloud & IaC     :</span> AWS (VPC, EC2, ECS, ECR, Route 53), Terraform
+  <span class="term-cyan">Containers & K8s:</span> Docker (Multi-stage), Kubernetes, Helm Charts
+  <span class="term-cyan">CI/CD & Tools   :</span> Jenkins, GitHub Actions, Git, Linux (Bash/Shell)
+  <span class="term-cyan">Frontend        :</span> HTML5, CSS3, JavaScript (ES6+), Responsive UI
+`,
+    projects: () => `
+<span class="term-cmd-text">Featured Deployments:</span>
+  1. <span class="term-cyan">EventHub</span>               - React, Docker, Kubernetes Helm
+  2. <span class="term-cyan">Weather App</span>            - Express, Helm Chart, Amazon ECR
+  3. <span class="term-cyan">Hearth Recipe App</span>      - Docker, AWS ECS Fargate
+  4. <span class="term-cyan">DevOps Fundamentals</span>    - AWS VPC, Subnets, Route Tables
+  5. <span class="term-cyan">Jenkins Pipeline</span>       - Automated CI/CD Jenkinsfile
+  <span class="term-dim">Type 'projects' or scroll to #projects to view details and code repositories.</span>
+`,
+    whoami: () => `
+<span class="term-cmd-text">Devendra Ghanekar</span>
+<span class="term-cyan">Role:</span> Junior DevOps Engineer & B.Sc Computer Science Graduate
+<span class="term-cyan">Location:</span> Virar (East), Maharashtra, India
+<span class="term-cyan">Mission:</span> Automating resilient cloud architectures & building seamless digital experiences.
+`,
+    contact: () => `
+<span class="term-cmd-text">Contact Channels:</span>
+  <span class="term-cyan">Email    :</span> devaghanekar23@gmail.com
+  <span class="term-cyan">GitHub   :</span> https://github.com/devaghanekar23
+  <span class="term-cyan">LinkedIn :</span> https://www.linkedin.com/in/devendra-ghanekar/
+  <span class="term-dim">Tip: Click the copy icon in the About section or use Ctrl+K to copy email instantly.</span>
+`,
+    resume: () => {
+      const a = document.createElement('a');
+      a.href = 'resume/Resume.pdf';
+      a.download = 'Resume.pdf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      return `<span class="term-green">✓ Downloading Devendra's official resume (Resume.pdf)...</span>`;
+    },
+    uptime: () => `
+<span class="term-cyan">cluster up 42 days, 16 hours, 2 users, load average: 0.08, 0.04, 0.01</span>
+<span class="term-green">Zero crash events detected. Auto-scaling groups nominal.</span>
+`,
+    date: () => `<span>${new Date().toUTCString()}</span>`
+  };
+
+  function printLine(rawCmd, outputHtml) {
+    const block = document.createElement('div');
+    block.className = 'term-line';
+    block.innerHTML = `
+      <div class="term-input-echo">
+        <span class="term-prompt"><span class="usr">deva@cloud</span><span class="sep">:</span><span class="path">~</span><span class="symbol">$</span></span>
+        <span class="term-cmd-text">${escapeHtml(rawCmd)}</span>
+      </div>
+      <div class="term-result">${outputHtml}</div>
+    `;
+    termOutput.appendChild(block);
+    termBody.scrollTop = termBody.scrollHeight;
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function executeCommand(raw) {
+    const trimmed = raw.trim();
+    if (!trimmed) return;
+    history.push(trimmed);
+    histIndex = history.length;
+
+    const lower = trimmed.toLowerCase();
+    if (lower === 'clear') {
+      termOutput.innerHTML = '';
+      return;
+    }
+
+    let out = '';
+    if (lower === 'help') {
+      out = COMMANDS.help();
+    } else if (lower.startsWith('kubectl') || lower === 'k8s') {
+      out = COMMANDS.kubectl();
+    } else if (lower.startsWith('docker')) {
+      out = COMMANDS.docker();
+    } else if (lower.startsWith('aws')) {
+      out = COMMANDS.aws();
+    } else if (lower.startsWith('skill')) {
+      out = COMMANDS.skills();
+    } else if (lower.startsWith('project')) {
+      out = COMMANDS.projects();
+    } else if (lower === 'whoami') {
+      out = COMMANDS.whoami();
+    } else if (lower === 'contact' || lower === 'email') {
+      out = COMMANDS.contact();
+    } else if (lower === 'resume' || lower === 'cv') {
+      out = COMMANDS.resume();
+    } else if (lower === 'uptime') {
+      out = COMMANDS.uptime();
+    } else if (lower === 'date') {
+      out = COMMANDS.date();
+    } else if (lower.startsWith('echo ')) {
+      out = `<span>${escapeHtml(trimmed.slice(5))}</span>`;
+    } else {
+      out = `<span class="term-dim">bash: command not found: ${escapeHtml(trimmed)}. Type <span class="term-cyan">'help'</span> for a list of available commands.</span>`;
+    }
+    printLine(trimmed, out);
+  }
+
+  termForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const val = termInput.value;
+    termInput.value = '';
+    executeCommand(val);
+  });
+
+  termInput.addEventListener('keydown', e => {
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (histIndex > 0) {
+        histIndex--;
+        termInput.value = history[histIndex] || '';
+      }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (histIndex < history.length - 1) {
+        histIndex++;
+        termInput.value = history[histIndex] || '';
+      } else {
+        histIndex = history.length;
+        termInput.value = '';
+      }
+    }
+  });
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const cmd = chip.dataset.cmd;
+      if (!cmd) return;
+      termInput.value = cmd;
+      setTimeout(() => {
+        executeCommand(cmd);
+        termInput.value = '';
+        termInput.focus();
+      }, 100);
+    });
+  });
+
+  // Initial welcome sequence when terminal scrolls into view
+  let hasAutoRun = false;
+  const termObs = new IntersectionObserver(([entry], obs) => {
+    if (entry.isIntersecting && !hasAutoRun) {
+      hasAutoRun = true;
+      obs.unobserve(terminal);
+      const welcome = `
+<span class="term-cyan">Welcome to Devendra's Cloud DevOps Control Center (v2.4)</span>
+<span class="term-dim">Session initialized: AWS ap-south-1 · Kubernetes cluster: prod-deva · Connected.</span>
+<span class="term-dim">Type <span class="term-cmd-text">'help'</span> to view commands or click any quick action chip above.</span>
+`;
+      const div = document.createElement('div');
+      div.className = 'term-line';
+      div.innerHTML = welcome;
+      termOutput.appendChild(div);
+
+      // Auto-simulate typing 'kubectl get pods'
+      setTimeout(() => {
+        if (history.length === 0) {
+          executeCommand('kubectl get pods');
+        }
+      }, 600);
+    }
+  }, { threshold: 0.25 });
+  termObs.observe(terminal);
+})();
+
+// 5. Spotlight Command Palette (Ctrl + K)
+(function initCommandPalette() {
+  const palette = document.getElementById('cmdPalette');
+  const backdrop = document.getElementById('cmdBackdrop');
+  const input = document.getElementById('cmdInput');
+  const list = document.getElementById('cmdList');
+  const hudBtn = document.getElementById('cmdHudBtn');
+  if (!palette || !input || !list) return;
+
+  const COMMAND_ITEMS = [
+    { title: 'Workflow CI/CD Pipeline', cat: 'Navigation', icon: 'fa-diagram-project', badge: 'Section', action: () => scrollToId('pipeline') },
+    { title: 'DevOps Cloud Terminal', cat: 'Navigation', icon: 'fa-terminal', badge: 'Interactive', action: () => { scrollToId('terminal'); focusTerminal(); } },
+    { title: 'Browse Projects', cat: 'Navigation', icon: 'fa-folder-open', badge: 'Section', action: () => scrollToId('projects') },
+    { title: 'Skills & Tech Stack', cat: 'Navigation', icon: 'fa-layer-group', badge: 'Section', action: () => scrollToId('skills') },
+    { title: 'About Me', cat: 'Navigation', icon: 'fa-user', badge: 'Section', action: () => scrollToId('about') },
+    { title: 'Education Timeline', cat: 'Navigation', icon: 'fa-graduation-cap', badge: 'Section', action: () => scrollToId('education') },
+    { title: 'Work Experience', cat: 'Navigation', icon: 'fa-briefcase', badge: 'Section', action: () => scrollToId('experience') },
+    { title: 'View Certificates', cat: 'Navigation', icon: 'fa-certificate', badge: 'Section', action: () => scrollToId('certificates') },
+    { title: 'Contact Me', cat: 'Navigation', icon: 'fa-envelope', badge: 'Section', action: () => scrollToId('contact') },
+    { title: 'Download Resume (PDF)', cat: 'Actions', icon: 'fa-file-pdf', badge: 'Download', action: () => downloadResume() },
+    { title: 'Copy Email Address', cat: 'Actions', icon: 'fa-copy', badge: 'Clipboard', action: () => copyEmail() },
+    { title: 'Open GitHub Profile', cat: 'External', icon: 'fa-brands fa-github', badge: 'github.com', action: () => window.open('https://github.com/devaghanekar23', '_blank') },
+    { title: 'Open LinkedIn Profile', cat: 'External', icon: 'fa-brands fa-linkedin', badge: 'linkedin.com', action: () => window.open('https://www.linkedin.com/in/devendra-ghanekar/', '_blank') },
+    { title: 'Run: kubectl get pods', cat: 'Terminal', icon: 'fa-dharmachakra', badge: 'CLI', action: () => runTermCmd('kubectl get pods') },
+    { title: 'Run: docker ps', cat: 'Terminal', icon: 'fa-brands fa-docker', badge: 'CLI', action: () => runTermCmd('docker ps') },
+    { title: 'Run: aws status', cat: 'Terminal', icon: 'fa-brands fa-aws', badge: 'CLI', action: () => runTermCmd('aws status') }
+  ];
+
+  let selectedIndex = 0;
+  let currentFiltered = [...COMMAND_ITEMS];
+
+  function openPalette() {
+    palette.classList.add('open');
+    palette.setAttribute('aria-hidden', 'false');
+    input.value = '';
+    renderItems(COMMAND_ITEMS);
+    setTimeout(() => input.focus({ preventScroll: true }), 60);
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePalette() {
+    palette.classList.remove('open');
+    palette.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function renderItems(items) {
+    currentFiltered = items;
+    selectedIndex = 0;
+    list.innerHTML = '';
+    if (!items.length) {
+      list.innerHTML = '<div class="cmd-empty"><i class="fas fa-search"></i> No matching commands found</div>';
+      return;
+    }
+    items.forEach((item, index) => {
+      const el = document.createElement('div');
+      el.className = 'cmd-item' + (index === 0 ? ' active' : '');
+      el.setAttribute('role', 'option');
+      el.innerHTML = `
+        <div class="cmd-item-left">
+          <div class="cmd-item-icon"><i class="${item.icon.includes('fa-') ? item.icon : 'fas ' + item.icon}"></i></div>
+          <span>${item.title}</span>
+        </div>
+        <span class="cmd-item-badge">${item.badge}</span>
+      `;
+      el.addEventListener('click', () => {
+        closePalette();
+        item.action();
+      });
+      el.addEventListener('mouseenter', () => {
+        setSelectedIndex(index);
+      });
+      list.appendChild(el);
+    });
+  }
+
+  function setSelectedIndex(idx) {
+    const children = list.querySelectorAll('.cmd-item');
+    if (!children.length) return;
+    children.forEach((c, i) => c.classList.toggle('active', i === idx));
+    selectedIndex = idx;
+    if (children[idx]) {
+      children[idx].scrollIntoView({ block: 'nearest' });
+    }
+  }
+
+  input.addEventListener('input', () => {
+    const q = input.value.toLowerCase().trim();
+    if (!q) {
+      renderItems(COMMAND_ITEMS);
+      return;
+    }
+    const filtered = COMMAND_ITEMS.filter(it =>
+      it.title.toLowerCase().includes(q) ||
+      it.cat.toLowerCase().includes(q) ||
+      it.badge.toLowerCase().includes(q)
+    );
+    renderItems(filtered);
+  });
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (currentFiltered.length) {
+        setSelectedIndex((selectedIndex + 1) % currentFiltered.length);
+      }
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (currentFiltered.length) {
+        setSelectedIndex((selectedIndex - 1 + currentFiltered.length) % currentFiltered.length);
+      }
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (currentFiltered[selectedIndex]) {
+        closePalette();
+        currentFiltered[selectedIndex].action();
+      }
+    } else if (e.key === 'Escape') {
+      closePalette();
+    }
+  });
+
+  if (hudBtn) hudBtn.addEventListener('click', openPalette);
+  if (backdrop) backdrop.addEventListener('click', closePalette);
+
+  window.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      if (palette.classList.contains('open')) closePalette();
+      else openPalette();
+    } else if (e.key === 'Escape' && palette.classList.contains('open')) {
+      closePalette();
+    }
+  });
+
+  function scrollToId(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function focusTerminal() {
+    const inp = document.getElementById('termInput');
+    if (inp) setTimeout(() => inp.focus(), 500);
+  }
+
+  function downloadResume() {
+    const a = document.createElement('a');
+    a.href = 'resume/Resume.pdf';
+    a.download = 'Resume.pdf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  function copyEmail() {
+    const email = 'devaghanekar23@gmail.com';
+    navigator.clipboard?.writeText(email).then(() => {
+      const toastEl = document.getElementById('toast');
+      if (toastEl) {
+        toastEl.innerHTML = '<i class="fas fa-check"></i> <span>Email copied to clipboard!</span>';
+        toastEl.classList.add('show');
+        setTimeout(() => toastEl.classList.remove('show'), 2800);
+      }
+    });
+  }
+
+  function runTermCmd(cmd) {
+    scrollToId('terminal');
+    const termInput = document.getElementById('termInput');
+    const termForm = document.getElementById('termForm');
+    if (termInput && termForm) {
+      termInput.value = cmd;
+      termForm.dispatchEvent(new Event('submit', { cancelable: true }));
+      setTimeout(() => termInput.focus(), 600);
+    }
+  }
 })();
