@@ -392,6 +392,19 @@ document.getElementById('year').textContent = new Date().getFullYear();
     certModal.classList.add('open');
     certModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+
+    // If an SVG is displayed, check if user has added a real scanned .jpg / .jpeg / .png
+    if (href.endsWith('.svg')) {
+      const base = href.replace(/\.svg$/, '');
+      ['.jpg', '.jpeg', '.png'].forEach(ext => {
+        const probe = new Image();
+        probe.onload = function () {
+          certImg.src = base + ext;
+          if (certDownload) certDownload.href = base + ext;
+        };
+        probe.src = base + ext;
+      });
+    }
   }
 
   function closeModal() {
@@ -514,6 +527,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   <span class="term-cyan">projects</span>           List featured DevOps & fullstack deployments
   <span class="term-cyan">whoami</span>             View Devendra Ghanekar profile summary
   <span class="term-cyan">contact</span>            Display verified email, location & links
+  <span class="term-cyan">certs</span>              List verified certifications
   <span class="term-cyan">resume</span>             Download official Resume PDF
   <span class="term-cyan">uptime</span>             Check simulated cluster uptime & system load
   <span class="term-cyan">clear</span>              Clear the terminal display
@@ -588,7 +602,23 @@ aws-ingress-alb-controller-01    <span class="term-green">1/1     Running</span>
 <span class="term-cyan">cluster up 42 days, 16 hours, 2 users, load average: 0.08, 0.04, 0.01</span>
 <span class="term-green">Zero crash events detected. Auto-scaling groups nominal.</span>
 `,
-    date: () => `<span>${new Date().toUTCString()}</span>`
+    date: () => `<span>${new Date().toUTCString()}</span>`,
+    certs: () => `
+<span class="term-cmd-text">Verified Certifications:</span>
+  1.  <span class="term-cyan">Git Linux AWS Certificate</span>
+  2.  <span class="term-cyan">Jenkins CI/CD Certificate</span>
+  3.  <span class="term-cyan">Docker Containerization Certificate</span>
+  4.  <span class="term-cyan">Kubernetes Cluster &amp; Orchestration</span>
+  5.  <span class="term-cyan">Terraform Infrastructure as Code</span>
+  6.  <span class="term-cyan">Ansible Configuration Management</span>
+  7.  <span class="term-cyan">Real-Time Cloud Monitoring</span>
+  8.  <span class="term-cyan">DevOps Internship Certificate</span>
+  9.  <span class="term-cyan">Video Editing Certificate</span>
+  10. <span class="term-cyan">12th Science Certificate</span>
+  11. <span class="term-cyan">NCC 'B' Certificate</span>
+  12. <span class="term-cyan">NCC 'C' Certificate</span>
+<span class="term-dim">Click any certificate in #certificates section or use Ctrl+K to preview.</span>
+`
   };
 
   function printLine(rawCmd, outputHtml) {
@@ -638,6 +668,8 @@ aws-ingress-alb-controller-01    <span class="term-green">1/1     Running</span>
       out = COMMANDS.whoami();
     } else if (lower === 'contact' || lower === 'email') {
       out = COMMANDS.contact();
+    } else if (lower.startsWith('cert')) {
+      out = COMMANDS.certs();
     } else if (lower === 'resume' || lower === 'cv') {
       out = COMMANDS.resume();
     } else if (lower === 'uptime') {
@@ -736,6 +768,10 @@ aws-ingress-alb-controller-01    <span class="term-green">1/1     Running</span>
     { title: 'Education Timeline', cat: 'Navigation', icon: 'fa-graduation-cap', badge: 'Section', action: () => scrollToId('education') },
     { title: 'Work Experience', cat: 'Navigation', icon: 'fa-briefcase', badge: 'Section', action: () => scrollToId('experience') },
     { title: 'View Certificates', cat: 'Navigation', icon: 'fa-certificate', badge: 'Section', action: () => scrollToId('certificates') },
+    { title: 'Cert: Kubernetes Cluster', cat: 'Certificates', icon: 'fa-dharmachakra', badge: 'Credential', action: () => openCertByQuery('kubernetes') },
+    { title: 'Cert: Terraform IaC', cat: 'Certificates', icon: 'fa-cubes', badge: 'Credential', action: () => openCertByQuery('terraform') },
+    { title: 'Cert: Ansible Automation', cat: 'Certificates', icon: 'fa-cogs', badge: 'Credential', action: () => openCertByQuery('ansible') },
+    { title: 'Cert: Real-Time Monitoring', cat: 'Certificates', icon: 'fa-chart-line', badge: 'Credential', action: () => openCertByQuery('monitoring') },
     { title: 'Contact Me', cat: 'Navigation', icon: 'fa-envelope', badge: 'Section', action: () => scrollToId('contact') },
     { title: 'Download Resume (PDF)', cat: 'Actions', icon: 'fa-file-pdf', badge: 'Download', action: () => downloadResume() },
     { title: 'Copy Email Address', cat: 'Actions', icon: 'fa-copy', badge: 'Clipboard', action: () => copyEmail() },
@@ -882,6 +918,14 @@ aws-ingress-alb-controller-01    <span class="term-green">1/1     Running</span>
         setTimeout(() => toastEl.classList.remove('show'), 2800);
       }
     });
+  }
+
+  function openCertByQuery(query) {
+    const link = [...document.querySelectorAll('.certs a')].find(a =>
+      a.textContent.toLowerCase().includes(query.toLowerCase()) ||
+      (a.dataset.title && a.dataset.title.toLowerCase().includes(query.toLowerCase()))
+    );
+    if (link) link.click();
   }
 
   function runTermCmd(cmd) {
