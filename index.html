@@ -1,416 +1,548 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Devendra Ghanekar | Frontend Developer & DevOps Learner</title>
-<meta name="description" content="Portfolio of Devendra Ghanekar, B.Sc Computer Science graduate. Frontend development, Docker, Kubernetes and AWS projects.">
-<meta name="theme-color" content="#0b1226">
-<meta property="og:title" content="Devendra Ghanekar | Portfolio">
-<meta property="og:description" content="Frontend developer and DevOps learner. See my projects, skills and resume.">
-<meta property="og:image" content="https://resume.devaghanekar.online/images/deva.png">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230b1226'/><text x='50' y='68' font-size='62' font-family='Arial' font-weight='700' fill='%2338bdf8' text-anchor='middle'>D</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devendra Ghanekar | Frontend Developer & DevOps Learner</title>
+  <meta name="description"
+    content="Portfolio of Devendra Ghanekar, B.Sc Computer Science graduate. Frontend development, Docker, Kubernetes and AWS projects.">
+  <meta name="theme-color" content="#0b1226">
+  <meta property="og:title" content="Devendra Ghanekar | Portfolio">
+  <meta property="og:description" content="Frontend developer and DevOps learner. See my projects, skills and resume.">
+  <meta property="og:image" content="https://resume.devaghanekar.online/images/deva.png">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230b1226'/><text x='50' y='68' font-size='62' font-family='Arial' font-weight='700' fill='%2338bdf8' text-anchor='middle'>D</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Sora:wght@600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<a class="skip" href="#about">Skip to content</a>
-<div id="progress" aria-hidden="true"></div>
+  <a class="skip" href="#about">Skip to content</a>
+  <div id="progress" aria-hidden="true"></div>
 
-<header class="header">
-  <div class="wrap bar">
-    <a href="#home" class="logo">Devendra<span>.</span></a>
-    <nav id="nav" aria-label="Main">
-      <a href="#about">About</a><a href="#skills">Skills</a><a href="#pipeline">Workflow</a><a href="#terminal">Terminal</a><a href="#projects">Projects</a>
-      <a href="#education">Education</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
-    </nav>
-    <div class="bar-actions">
-      <button type="button" class="cmd-hud-btn" id="cmdHudBtn" aria-label="Command Palette (Ctrl+K)" title="Press Ctrl + K to open Command Palette"><i class="fas fa-terminal"></i><span class="hud-kbd">Ctrl K</span></button>
-      <button class="menu-btn" aria-label="Open menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+  <header class="header">
+    <div class="wrap bar">
+      <a href="#home" class="logo">Devendra<span>.</span></a>
+      <nav id="nav" aria-label="Main">
+        <a href="#about">About</a><a href="#skills">Skills</a><a href="#pipeline">Workflow</a><a
+          href="#terminal">Terminal</a><a href="#projects">Projects</a>
+        <a href="#education">Education</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+      </nav>
+      <div class="bar-actions">
+        <button type="button" class="cmd-hud-btn" id="cmdHudBtn" aria-label="Command Palette (Ctrl+K)"
+          title="Press Ctrl + K to open Command Palette"><i class="fas fa-terminal"></i><span class="hud-kbd">Ctrl
+            K</span></button>
+        <button class="menu-btn" aria-label="Open menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<main>
-<section id="home" class="hero">
-  <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
-  <div class="blob b1" aria-hidden="true"></div><div class="blob b2" aria-hidden="true"></div>
-  <div class="wrap hero-grid">
-    <div class="hero-text">
-      <div class="hero-badges">
-        <p class="pill"><i></i>Junior DevOps Engineer</p>
-        <div class="cloud-status-badge" aria-label="Live Cloud Status">
-          <span class="beacon-dot" aria-hidden="true"></span>
-          <span class="badge-text"><b>Live:</b> AWS ap-south-1</span>
-          <span class="badge-sep">·</span>
-          <span class="badge-text live-tag">K8s Ready</span>
+  <main>
+    <section id="home" class="hero">
+      <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+      <div class="blob b1" aria-hidden="true"></div>
+      <div class="blob b2" aria-hidden="true"></div>
+      <div class="wrap hero-grid">
+        <div class="hero-text">
+          <div class="hero-badges">
+            <p class="pill"><i></i>Junior DevOps Engineer</p>
+            <div class="cloud-status-badge" aria-label="Live Cloud Status">
+              <span class="beacon-dot" aria-hidden="true"></span>
+              <span class="badge-text"><b>Live:</b> AWS ap-south-1</span>
+              <span class="badge-sep">·</span>
+              <span class="badge-text live-tag">K8s Ready</span>
+            </div>
+          </div>
+          <h1>Devendra Ghanekar</h1>
+          <h2 class="role"><span id="typing">Junior DevOps Engineer</span></h2>
+          <p class="lead">Computer Science graduate who builds DevOps pipelines and improves UI components for a better
+            user experience. Looking for an opportunity to deliver great software and DevOps solutions.</p>
+          <div class="actions">
+            <a href="#contact" class="btn primary">Hire me</a>
+            <a href="resume/Resume.pdf" download class="btn ghost"><i class="fa-regular fa-file-pdf"></i> Download
+              resume</a>
+          </div>
+          <div class="social">
+            <a href="https://github.com/devaghanekar23" aria-label="GitHub" target="_blank" rel="noopener"><i
+                class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/devendra-ghanekar/" aria-label="LinkedIn" target="_blank"
+              rel="noopener"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/devaghanekar23" aria-label="Instagram" target="_blank" rel="noopener"><i
+                class="fab fa-instagram"></i></a>
+            <a href="mailto:devaghanekar23@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+        <div class="photo"><img src="images/deva.png" alt="Portrait of Devendra Ghanekar" width="380" height="380">
         </div>
       </div>
-      <h1>Devendra Ghanekar</h1>
-      <h2 class="role"><span id="typing">Junior DevOps Engineer</span></h2>
-      <p class="lead">Computer Science graduate who builds DevOps pipelines and improves UI components for a better user experience. Looking for an opportunity to deliver great software and DevOps solutions.</p>
-      <div class="actions">
-        <a href="#contact" class="btn primary">Hire me</a>
-        <a href="resume/Resume.pdf" download class="btn ghost"><i class="fa-regular fa-file-pdf"></i> Download resume</a>
-      </div>
-      <div class="social">
-        <a href="https://github.com/devaghanekar23" aria-label="GitHub" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/devendra-ghanekar/" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
-        <a href="https://www.instagram.com/devaghanekar23" aria-label="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-        <a href="mailto:devaghanekar23@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-      </div>
-    </div>
-    <div class="photo"><img src="images/deva.png" alt="Portrait of Devendra Ghanekar" width="380" height="380"></div>
-  </div>
-</section>
+    </section>
 
-<section class="stats" aria-label="At a glance">
-  <div class="wrap stat-grid">
-    <div><b data-count="5" data-suffix="+">5+</b><span>Projects built</span></div>
-    <div><b data-count="12">12</b><span>Certificates earned</span></div>
-    <div><b data-count="12">12</b><span>Tools and technologies</span></div>
-    <div><b data-count="3">3</b><span>Years of CS study</span></div>
-  </div>
-</section>
+    <section class="stats" aria-label="At a glance">
+      <div class="wrap stat-grid">
+        <div><b data-count="5" data-suffix="+">5+</b><span>Projects built</span></div>
+        <div><b data-count="12">12</b><span>Certificates earned</span></div>
+        <div><b data-count="12">12</b><span>Tools and technologies</span></div>
+        <div><b data-count="3">3</b><span>Years of CS study</span></div>
+      </div>
+    </section>
 
-<section id="about">
-  <div class="wrap">
-    <h2 class="title">About me</h2>
-    <div class="about">
-      <img src="images/deva.png" alt="" class="about-img" loading="lazy">
-      <div>
-        <h3>IT graduate and junior devOps engineer</h3>
-        <p>I completed my B.Sc in Computer Science. I enjoy building DevOps pipelines and improving UI components for a better user experience. Right now I am learning DevOps and AWS, and I build real projects to practise what I learn.</p>
-        <ul class="facts">
-          <li><i class="fas fa-user"></i>Devendra Ghanekar</li>
-          <li><i class="fas fa-graduation-cap"></i>B.Sc Computer Science</li>
-          <li><i class="fas fa-envelope"></i><a href="mailto:devaghanekar23@gmail.com">devaghanekar23@gmail.com</a><button type="button" class="copy-email-btn" data-email="devaghanekar23@gmail.com" aria-label="Copy email" title="Copy email"><i class="far fa-copy"></i></button></li>
-          <li><i class="fas fa-location-dot"></i>Virar (East), Maharashtra, India</li>
+    <section id="about">
+      <div class="wrap">
+        <h2 class="title">About me</h2>
+        <div class="about">
+          <img src="images/deva.png" alt="" class="about-img" loading="lazy">
+          <div>
+            <h3>IT graduate and junior devOps engineer</h3>
+            <p>I completed my B.Sc in Computer Science. I enjoy building DevOps pipelines and improving UI components
+              for a better user experience. Right now I am learning DevOps and AWS, and I build real projects to
+              practise what I learn.</p>
+            <ul class="facts">
+              <li><i class="fas fa-user"></i>Devendra Ghanekar</li>
+              <li><i class="fas fa-graduation-cap"></i>B.Sc Computer Science</li>
+              <li><i class="fas fa-envelope"></i><a
+                  href="mailto:devaghanekar23@gmail.com">devaghanekar23@gmail.com</a><button type="button"
+                  class="copy-email-btn" data-email="devaghanekar23@gmail.com" aria-label="Copy email"
+                  title="Copy email"><i class="far fa-copy"></i></button></li>
+              <li><i class="fas fa-location-dot"></i>Virar (East), Maharashtra, India</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="alt">
+      <div class="wrap">
+        <h2 class="title">Skills</h2>
+        <h3 class="sub">Frontend</h3>
+        <ul class="skills">
+          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                alt=""></span>HTML</li>
+          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+                alt=""></span>CSS</li>
+          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                alt=""></span>JavaScript</li>
+          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg"
+                alt=""></span>jQuery</li>
+
+        </ul>
+        <h3 class="sub">DevOps and cloud</h3>
+        <ul class="skills">
+          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt=""></span>Git
+          </li>
+          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                alt=""></span>GitHub</li>
+          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg"
+                alt=""></span>Jenkins</li>
+          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                alt=""></span>Docker</li>
+          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-original.svg"
+                alt=""></span>Kubernetes</li>
+          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg"
+                alt=""></span>Terraform</li>
+          <li><span><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg"
+                alt=""></span>AWS</li>
+          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
+                alt=""></span>Linux</li>
         </ul>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section id="skills" class="alt">
-  <div class="wrap">
-    <h2 class="title">Skills</h2>
-    <h3 class="sub">Frontend</h3>
-    <ul class="skills">
-      <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt=""></span>HTML</li>
-      <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt=""></span>CSS</li>
-      <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt=""></span>JavaScript</li>
-      <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg" alt=""></span>jQuery</li>
-
-    </ul>
-    <h3 class="sub">DevOps and cloud</h3>
-    <ul class="skills">
-      <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt=""></span>Git</li>
-      <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt=""></span>GitHub</li>
-      <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" alt=""></span>Jenkins</li>
-      <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt=""></span>Docker</li>
-      <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-original.svg" alt=""></span>Kubernetes</li>
-      <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" alt=""></span>Terraform</li>
-      <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" alt=""></span>AWS</li>
-      <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt=""></span>Linux</li>
-    </ul>
-  </div>
-</section>
-
-<section id="pipeline" class="pipeline-section">
-  <div class="wrap">
-    <h2 class="title">CI/CD DevOps Workflow</h2>
-    <p class="pipeline-desc">Automated end-to-end delivery pipeline from local commit to cloud infrastructure.</p>
-    <div class="pipeline-flow">
-      <div class="pipe-step">
-        <span class="pipe-num">01</span>
-        <div class="pipe-icon"><i class="fab fa-git-alt"></i></div>
-        <h3>Source Code</h3>
-        <p>Git branching & GitHub webhooks</p>
-      </div>
-      <div class="pipe-arrow" aria-hidden="true"><div class="pipe-beam"></div><i class="fas fa-chevron-right"></i></div>
-      <div class="pipe-step">
-        <span class="pipe-num">02</span>
-        <div class="pipe-icon"><i class="fab fa-jenkins"></i></div>
-        <h3>CI Pipeline</h3>
-        <p>Jenkinsfile automated build & test</p>
-      </div>
-      <div class="pipe-arrow" aria-hidden="true"><div class="pipe-beam"></div><i class="fas fa-chevron-right"></i></div>
-      <div class="pipe-step">
-        <span class="pipe-num">03</span>
-        <div class="pipe-icon"><i class="fab fa-docker"></i></div>
-        <h3>Containerize</h3>
-        <p>Docker multi-stage images & ECR</p>
-      </div>
-      <div class="pipe-arrow" aria-hidden="true"><div class="pipe-beam"></div><i class="fas fa-chevron-right"></i></div>
-      <div class="pipe-step">
-        <span class="pipe-num">04</span>
-        <div class="pipe-icon"><i class="fas fa-dharmachakra"></i></div>
-        <h3>Orchestrate</h3>
-        <p>Kubernetes Helm charts & Pods</p>
-      </div>
-      <div class="pipe-arrow" aria-hidden="true"><div class="pipe-beam"></div><i class="fas fa-chevron-right"></i></div>
-      <div class="pipe-step">
-        <span class="pipe-num">05</span>
-        <div class="pipe-icon"><i class="fab fa-aws"></i></div>
-        <h3>Cloud Deploy</h3>
-        <p>AWS VPC, ECS, EC2 & Fargate live</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="terminal" class="terminal-section">
-  <div class="wrap">
-    <div class="term-header-wrap">
-      <h2 class="title">DevOps Cloud Shell</h2>
-      <p class="term-desc">Interactive cluster terminal. Test live Kubernetes queries, inspect Docker containers, and explore AWS infrastructure.</p>
-    </div>
-    <div class="terminal-card">
-      <div class="term-bar">
-        <div class="term-dots" aria-hidden="true">
-          <span class="dot dot-close"></span>
-          <span class="dot dot-min"></span>
-          <span class="dot dot-max"></span>
-        </div>
-        <div class="term-title"><i class="fas fa-terminal"></i> deva@cloud-cluster:~ (bash)</div>
-        <div class="term-status-pill">
-          <span class="term-pulse-dot" aria-hidden="true"></span>
-          <span>AWS: ap-south-1</span>
+    <section id="pipeline" class="pipeline-section">
+      <div class="wrap">
+        <h2 class="title">CI/CD DevOps Workflow</h2>
+        <p class="pipeline-desc">Automated end-to-end delivery pipeline from local commit to cloud infrastructure.</p>
+        <div class="pipeline-flow">
+          <div class="pipe-step">
+            <span class="pipe-num">01</span>
+            <div class="pipe-icon"><i class="fab fa-git-alt"></i></div>
+            <h3>Source Code</h3>
+            <p>Git branching & GitHub webhooks</p>
+          </div>
+          <div class="pipe-arrow" aria-hidden="true">
+            <div class="pipe-beam"></div><i class="fas fa-chevron-right"></i>
+          </div>
+          <div class="pipe-step">
+            <span class="pipe-num">02</span>
+            <div class="pipe-icon"><i class="fab fa-jenkins"></i></div>
+            <h3>CI Pipeline</h3>
+            <p>Jenkinsfile automated build & test</p>
+          </div>
+          <div class="pipe-arrow" aria-hidden="true">
+            <div class="pipe-beam"></div><i class="fas fa-chevron-right"></i>
+          </div>
+          <div class="pipe-step">
+            <span class="pipe-num">03</span>
+            <div class="pipe-icon"><i class="fab fa-docker"></i></div>
+            <h3>Containerize</h3>
+            <p>Docker multi-stage images & ECR</p>
+          </div>
+          <div class="pipe-arrow" aria-hidden="true">
+            <div class="pipe-beam"></div><i class="fas fa-chevron-right"></i>
+          </div>
+          <div class="pipe-step">
+            <span class="pipe-num">04</span>
+            <div class="pipe-icon"><i class="fas fa-dharmachakra"></i></div>
+            <h3>Orchestrate</h3>
+            <p>Kubernetes Helm charts & Pods</p>
+          </div>
+          <div class="pipe-arrow" aria-hidden="true">
+            <div class="pipe-beam"></div><i class="fas fa-chevron-right"></i>
+          </div>
+          <div class="pipe-step">
+            <span class="pipe-num">05</span>
+            <div class="pipe-icon"><i class="fab fa-aws"></i></div>
+            <h3>Cloud Deploy</h3>
+            <p>AWS VPC, ECS, EC2 & Fargate live</p>
+          </div>
         </div>
       </div>
-      <div class="term-chips-bar" aria-label="Terminal quick commands">
-        <span class="chips-title">Quick Actions:</span>
-        <button type="button" class="term-chip" data-cmd="kubectl get pods"><i class="fas fa-dharmachakra"></i> kubectl get pods</button>
-        <button type="button" class="term-chip" data-cmd="docker ps"><i class="fab fa-docker"></i> docker ps</button>
-        <button type="button" class="term-chip" data-cmd="aws status"><i class="fab fa-aws"></i> aws status</button>
-        <button type="button" class="term-chip" data-cmd="skills"><i class="fas fa-layer-group"></i> skills</button>
-        <button type="button" class="term-chip" data-cmd="projects"><i class="fas fa-folder-open"></i> projects</button>
-        <button type="button" class="term-chip" data-cmd="whoami"><i class="fas fa-id-badge"></i> whoami</button>
-        <button type="button" class="term-chip term-chip-clear" data-cmd="clear" title="Clear terminal"><i class="fas fa-trash-can"></i> clear</button>
+    </section>
+
+    <section id="terminal" class="terminal-section">
+      <div class="wrap">
+        <div class="term-header-wrap">
+          <h2 class="title">DevOps Cloud Shell</h2>
+          <p class="term-desc">Interactive cluster terminal. Test live Kubernetes queries, inspect Docker containers,
+            and explore AWS infrastructure.</p>
+        </div>
+        <div class="terminal-card">
+          <div class="term-bar">
+            <div class="term-dots" aria-hidden="true">
+              <span class="dot dot-close"></span>
+              <span class="dot dot-min"></span>
+              <span class="dot dot-max"></span>
+            </div>
+            <div class="term-title"><i class="fas fa-terminal"></i> deva@cloud-cluster:~ (bash)</div>
+            <div class="term-status-pill">
+              <span class="term-pulse-dot" aria-hidden="true"></span>
+              <span>AWS: ap-south-1</span>
+            </div>
+          </div>
+          <div class="term-chips-bar" aria-label="Terminal quick commands">
+            <span class="chips-title">Quick Actions:</span>
+            <button type="button" class="term-chip" data-cmd="kubectl get pods"><i class="fas fa-dharmachakra"></i>
+              kubectl get pods</button>
+            <button type="button" class="term-chip" data-cmd="docker ps"><i class="fab fa-docker"></i> docker
+              ps</button>
+            <button type="button" class="term-chip" data-cmd="aws status"><i class="fab fa-aws"></i> aws status</button>
+            <button type="button" class="term-chip" data-cmd="skills"><i class="fas fa-layer-group"></i> skills</button>
+            <button type="button" class="term-chip" data-cmd="projects"><i class="fas fa-folder-open"></i>
+              projects</button>
+            <button type="button" class="term-chip" data-cmd="whoami"><i class="fas fa-id-badge"></i> whoami</button>
+            <button type="button" class="term-chip term-chip-clear" data-cmd="clear" title="Clear terminal"><i
+                class="fas fa-trash-can"></i> clear</button>
+          </div>
+          <div class="term-body" id="termBody">
+            <div class="term-output" id="termOutput" role="log" aria-live="polite"></div>
+            <form class="term-input-line" id="termForm" autocomplete="off">
+              <label for="termInput" class="term-prompt"><span class="usr">deva@cloud</span><span
+                  class="sep">:</span><span class="path">~</span><span class="symbol">$</span></label>
+              <input type="text" id="termInput" class="term-input"
+                placeholder="Type a command (try 'help' or click a quick action above)..." autocomplete="off"
+                autocapitalize="off" spellcheck="false">
+            </form>
+          </div>
+        </div>
       </div>
-      <div class="term-body" id="termBody">
-        <div class="term-output" id="termOutput" role="log" aria-live="polite"></div>
-        <form class="term-input-line" id="termForm" autocomplete="off">
-          <label for="termInput" class="term-prompt"><span class="usr">deva@cloud</span><span class="sep">:</span><span class="path">~</span><span class="symbol">$</span></label>
-          <input type="text" id="termInput" class="term-input" placeholder="Type a command (try 'help' or click a quick action above)..." autocomplete="off" autocapitalize="off" spellcheck="false">
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="projects-head">
+          <h2 class="title">Projects</h2>
+          <div class="project-filters" role="tablist" aria-label="Project categories">
+            <button type="button" class="filter-btn active" data-filter="all">All</button>
+            <button type="button" class="filter-btn" data-filter="devops">DevOps & Cloud</button>
+            <button type="button" class="filter-btn" data-filter="web">Web Apps</button>
+          </div>
+        </div>
+        <div class="grid projects-grid">
+          <article class="card project-card" data-cat="devops web">
+            <div class="card-head">
+              <h3>EventHub</h3>
+              <a href="https://github.com/devaghanekar23" target="_blank" rel="noopener" class="code-btn"
+                aria-label="EventHub GitHub" title="View Source Code"><i class="fab fa-github"></i></a>
+            </div>
+            <p>Event management app. Browse events, register for seats, and manage events and attendees from a
+              dashboard. Ships with Docker and Kubernetes files.</p>
+            <p class="tags"><span>React</span><span>Docker</span><span>Kubernetes</span></p>
+          </article>
+          <article class="card project-card" data-cat="devops web">
+            <div class="card-head">
+              <h3>Weather app</h3>
+              <a href="https://github.com/devaghanekar23" target="_blank" rel="noopener" class="code-btn"
+                aria-label="Weather App GitHub" title="View Source Code"><i class="fab fa-github"></i></a>
+            </div>
+            <p>Frontend and backend weather app deployed to Kubernetes with a Helm chart. Images are stored in Amazon
+              ECR.</p>
+            <p class="tags"><span>Helm</span><span>Kubernetes</span><span>AWS ECR</span></p>
+          </article>
+          <article class="card project-card" data-cat="devops web">
+            <div class="card-head">
+              <h3>Hearth recipe app</h3>
+              <a href="https://github.com/devaghanekar23" target="_blank" rel="noopener" class="code-btn"
+                aria-label="Hearth Recipe App GitHub" title="View Source Code"><i class="fab fa-github"></i></a>
+            </div>
+            <p>Recipe app packaged in Docker and deployed on AWS using ECR, ECS and Fargate for a DevOps mini project.
+            </p>
+            <p class="tags"><span>Docker</span><span>ECS</span><span>Fargate</span></p>
+          </article>
+          <article class="card project-card" data-cat="devops">
+            <div class="card-head">
+              <h3>DevOps-Fundamentals-Project</h3>
+              <a href="https://github.com/devaghanekar23" target="_blank" rel="noopener" class="code-btn"
+                aria-label="DevOps Fundamentals GitHub" title="View Source Code"><i class="fab fa-github"></i></a>
+            </div>
+            <p>DevOps fundamentals project using github actions</p>
+            <p class="tags">
+              <span>AWS</span><span>VPC</span><span>Subnet</span><span>Route-Table</span><span>Security-Group</span><span>GitHub</span>
+            </p>
+          </article>
+          <article class="card project-card" data-cat="devops">
+            <div class="card-head">
+              <h3>jenkins-Fundamentals-Project</h3>
+              <a href="https://github.com/devaghanekar23" target="_blank" rel="noopener" class="code-btn"
+                aria-label="Jenkins Fundamentals GitHub" title="View Source Code"><i class="fab fa-github"></i></a>
+            </div>
+            <p>jenkins fundamentals project</p>
+            <p class="tags"><span>Jenkins</span><span>Git</span><span>Pipeline</span><span>JenkinsFile</span></p>
+          </article>
+          <article class="card project-card" data-cat="devops">
+            <div class="card-head">
+              <h3>kubernetes Project</h3>
+              <a href="https://github.com/devaghanekar23" target="_blank" rel="noopener" class="code-btn"
+                aria-label="Jenkins Fundamentals GitHub" title="View Source Code"><i class="fab fa-github"></i></a>
+            </div>
+            <p>Automating Application deployment using kubernetes and jenkins CI/CD pipeline</p>
+            <p class="tags"><span>Jenkins</span><span>Pipeline</span><span>Git</span><span>Kubernetes</span><span>Docker
+                </sspan>Bitbucket</span><span>Minikube</span>
+              <pan>
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="alt">
+      <div class="wrap">
+        <h2 class="title">Education</h2>
+        <ol class="edu">
+          <li class="edu-item latest">
+            <span class="edu-icon"><i class="fas fa-graduation-cap"></i></span>
+            <div class="edu-card">
+              <div class="edu-top">
+                <h3>B.Sc Computer Science</h3><span class="edu-year">2023 - 2026</span>
+              </div>
+              <p class="edu-school">University of Mumbai</p>
+              <p class="edu-note">Bachelor's degree in Computer Science. Completed.</p>
+            </div>
+          </li>
+          <li class="edu-item">
+            <span class="edu-icon"><i class="fas fa-book-open"></i></span>
+            <div class="edu-card">
+              <div class="edu-top">
+                <h3>Higher Secondary (HSC)</h3><span class="edu-year">2021 - 2023</span>
+              </div>
+              <p class="edu-school">Maharashtra State Board</p>
+              <p class="edu-note">12th, Science stream. Completed.</p>
+            </div>
+          </li>
+          <li class="edu-item">
+            <span class="edu-icon"><i class="fas fa-school"></i></span>
+            <div class="edu-card">
+              <div class="edu-top">
+                <h3>High School (SSC)</h3><span class="edu-year">2020 - 2021</span>
+              </div>
+              <p class="edu-school">Maharashtra State Board</p>
+              <p class="edu-note">10th standard. Completed.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="wrap">
+        <h2 class="title">Experience</h2>
+        <div class="grid two">
+          <article class="card exp-card">
+            <p class="meta"><b class="badge">Current</b>2026 - Present</p>
+            <h3>Junior DevOps Engineer</h3>
+            <p class="company">Propjini CRM</p>
+            <p>Building automated CI/CD pipelines, managing cloud infrastructure on AWS, and orchestrating containerized
+              services to ensure reliable and fast software delivery.</p>
+            <div class="exp-tech-tags">
+              <span>AWS</span><span>Docker</span><span>CI/CD</span><span>Linux</span><span>Git</span>
+            </div>
+          </article>
+          <article class="card exp-card">
+            <p class="meta"><b class="badge open">Open</b>Looking for roles</p>
+            <h3>Fresher / DevOps Engineer</h3>
+            <p class="company">Open to Opportunities</p>
+            <p>Passionate about DevOps, container orchestration with Kubernetes, and Infrastructure as Code. Ready to
+              add value to scalable engineering teams.</p>
+            <div class="exp-tech-tags">
+              <span>Kubernetes</span><span>Terraform</span><span>Jenkins</span><span>Cloud</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="certificates" class="alt">
+      <div class="wrap">
+        <h2 class="title">Certificates</h2>
+        <div class="certs">
+          <a href="images/Git%20Linux%20AWS%20Certificate.jpg" data-title="Git Linux AWS Certificate"
+            class="cert-link"><i class="fab fa-git-alt"></i><span>Git Linux AWS</span><i
+              class="fas fa-expand cert-expand" aria-hidden="true"></i></a>
+          <a href="images/Jenkins.jpg" data-title="Jenkins CI/CD Certificate" class="cert-link"><i
+              class="fab fa-jenkins"></i><span>Jenkins</span><i class="fas fa-expand cert-expand"
+              aria-hidden="true"></i></a>
+          <a href="images/docker.jpeg" data-title="Docker Containerization Certificate" class="cert-link"><i
+              class="fab fa-docker"></i><span>Docker</span><i class="fas fa-expand cert-expand"
+              aria-hidden="true"></i></a>
+          <a href="images/kubernetes.jpg" data-title="Kubernetes Cluster &amp; Orchestration Certificate"
+            class="cert-link"><i class="fas fa-dharmachakra"></i><span>Kubernetes</span><i
+              class="fas fa-expand cert-expand" aria-hidden="true"></i></a>
+          <a href="images/terraform.svg" data-title="Terraform Infrastructure as Code Certificate" class="cert-link"><i
+              class="fas fa-cubes"></i><span>Terraform</span><i class="fas fa-expand cert-expand"
+              aria-hidden="true"></i></a>
+          <a href="images/ansible.svg" data-title="Ansible Configuration Management Certificate" class="cert-link"><svg
+              class="cert-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+              <path
+                d="M12 0a12 12 0 1 0 12 12A12.013 12.013 0 0 0 12 0zm5.82 17.65h-2.18l-1.04-2.82H9.4l-.57 1.54-.72 1.28H6l5.06-12.7h1.88l5.06 12.7h-.18zm-4.04-4.54l-1.78-4.82-1.78 4.82h3.56z" />
+            </svg><span>Ansible</span><i class="fas fa-expand cert-expand" aria-hidden="true"></i></a>
+          <a href="images/real-time-monitoring.svg" data-title="Real-Time Cloud Monitoring Certificate"
+            class="cert-link"><i class="fas fa-chart-line"></i><span>Real-Time Monitoring</span><i
+              class="fas fa-expand cert-expand" aria-hidden="true"></i></a>
+          <a href="images/internship.jpeg" data-title="DevOps Internship Certificate" class="cert-link"><i
+              class="fas fa-briefcase"></i><span>Internship</span><i class="fas fa-expand cert-expand"
+              aria-hidden="true"></i></a>
+          <a href="images/video%20editing.jpeg" data-title="Video Editing Certificate" class="cert-link"><i
+              class="fas fa-film"></i><span>Video Editing</span><i class="fas fa-expand cert-expand"
+              aria-hidden="true"></i></a>
+          <a href="images/12th.jpeg" data-title="12th Science Certificate" class="cert-link"><i
+              class="fas fa-book-open"></i><span>12th Science</span><i class="fas fa-expand cert-expand"
+              aria-hidden="true"></i></a>
+          <a href="images/ncc%20b%20cert.jpeg" data-title="NCC 'B' Certificate" class="cert-link"><i
+              class="fas fa-medal"></i><span>NCC 'B' Certificate</span><i class="fas fa-expand cert-expand"
+              aria-hidden="true"></i></a>
+          <a href="images/ncc%20c%20cert.jpeg" data-title="NCC 'C' Certificate" class="cert-link"><i
+              class="fas fa-medal"></i><span>NCC 'C' Certificate</span><i class="fas fa-expand cert-expand"
+              aria-hidden="true"></i></a>
+          <!-- Add your degree file to images/ and remove the comment marks to show it:
+      <a href="images/bsc-computer-science.jpeg" target="_blank" rel="noopener"><i class="fas fa-graduation-cap"></i>B.Sc Computer Science</a> -->
+        </div>
+      </div>
+    </section>
+
+    <section id="achievements">
+      <div class="wrap">
+        <h2 class="title">Achievements</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>3+ web projects</h3>
+            <p>Built responsive web apps with clean code and modern layouts.</p>
+          </article>
+          <article class="card">
+            <h3>Learning DevOps</h3>
+            <p>Working with CI/CD pipelines, Docker containers and cloud deployment.</p>
+          </article>
+          <article class="card">
+            <h3>Active on GitHub</h3>
+            <p>Keeping repositories organised and committing regularly.</p>
+          </article>
+          <article class="card">
+            <h3>NCC cadet</h3>
+            <p>Built leadership, discipline and teamwork through NCC training.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="alt">
+      <div class="wrap contact">
+        <div>
+          <h2 class="title">Contact me</h2>
+          <p class="lead">Have an opportunity or a question? Send a message and I will reply by email.</p>
+          <ul class="facts">
+            <li><i class="fas fa-envelope"></i><a
+                href="mailto:devaghanekar23@gmail.com">devaghanekar23@gmail.com</a><button type="button"
+                class="copy-email-btn" data-email="devaghanekar23@gmail.com" aria-label="Copy email"
+                title="Copy email"><i class="far fa-copy"></i></button></li>
+            <li><i class="fas fa-location-dot"></i>Virar (East), Maharashtra</li>
+          </ul>
+          <a href="resume/Resume.pdf" download class="btn ghost"><i class="fa-regular fa-file-pdf"></i> Download
+            resume</a>
+        </div>
+        <form class="form" id="form">
+          <label>Your name<input name="name" type="text" required autocomplete="name"></label>
+          <label>Your email<input name="email" type="email" required autocomplete="email"></label>
+          <label>Message<textarea name="message" rows="5" required></textarea></label>
+          <button type="submit" class="btn primary">Send message</button>
+          <p id="status" role="status"></p>
         </form>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
+  </main>
 
-<section id="projects">
-  <div class="wrap">
-    <div class="projects-head">
-      <h2 class="title">Projects</h2>
-      <div class="project-filters" role="tablist" aria-label="Project categories">
-        <button type="button" class="filter-btn active" data-filter="all">All</button>
-        <button type="button" class="filter-btn" data-filter="devops">DevOps & Cloud</button>
-        <button type="button" class="filter-btn" data-filter="web">Web Apps</button>
+  <footer class="footer">
+    <div class="wrap"><span>Devendra Ghanekar</span><span>&copy; <span id="year">2026</span> All rights reserved</span>
+    </div>
+  </footer>
+  <button id="topBtn" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- Certificate Lightbox Modal -->
+  <div id="certModal" class="cert-modal" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-label="Certificate Preview">
+    <div class="cert-backdrop" id="certBackdrop"></div>
+    <div class="cert-dialog">
+      <button type="button" class="cert-close" id="certClose" aria-label="Close certificate preview"><i
+          class="fas fa-xmark"></i></button>
+      <div class="cert-body">
+        <img id="certImg" src="" alt="Certificate preview">
+      </div>
+      <div class="cert-meta">
+        <h3 id="certTitle">Certificate Preview</h3>
+        <a id="certDownload" href="" target="_blank" rel="noopener" class="btn ghost btn-sm"><i
+            class="fas fa-arrow-up-right-from-square"></i> Open Full Image</a>
       </div>
     </div>
-    <div class="grid projects-grid">
-      <article class="card project-card" data-cat="devops web">
-        <div class="card-head">
-          <h3>EventHub</h3>
-          <a href="https://github.com/devaghanekar23" target="_blank" rel="noopener" class="code-btn" aria-label="EventHub GitHub" title="View Source Code"><i class="fab fa-github"></i></a>
-        </div>
-        <p>Event management app. Browse events, register for seats, and manage events and attendees from a dashboard. Ships with Docker and Kubernetes files.</p>
-        <p class="tags"><span>React</span><span>Docker</span><span>Kubernetes</span></p>
-      </article>
-      <article class="card project-card" data-cat="devops web">
-        <div class="card-head">
-          <h3>Weather app</h3>
-          <a href="https://github.com/devaghanekar23" target="_blank" rel="noopener" class="code-btn" aria-label="Weather App GitHub" title="View Source Code"><i class="fab fa-github"></i></a>
-        </div>
-        <p>Frontend and backend weather app deployed to Kubernetes with a Helm chart. Images are stored in Amazon ECR.</p>
-        <p class="tags"><span>Helm</span><span>Kubernetes</span><span>AWS ECR</span></p>
-      </article>
-      <article class="card project-card" data-cat="devops web">
-        <div class="card-head">
-          <h3>Hearth recipe app</h3>
-          <a href="https://github.com/devaghanekar23" target="_blank" rel="noopener" class="code-btn" aria-label="Hearth Recipe App GitHub" title="View Source Code"><i class="fab fa-github"></i></a>
-        </div>
-        <p>Recipe app packaged in Docker and deployed on AWS using ECR, ECS and Fargate for a DevOps mini project.</p>
-        <p class="tags"><span>Docker</span><span>ECS</span><span>Fargate</span></p>
-      </article>
-      <article class="card project-card" data-cat="devops">
-        <div class="card-head">
-          <h3>DevOps-Fundamentals-Project</h3>
-          <a href="https://github.com/devaghanekar23" target="_blank" rel="noopener" class="code-btn" aria-label="DevOps Fundamentals GitHub" title="View Source Code"><i class="fab fa-github"></i></a>
-        </div>
-        <p>DevOps fundamentals project using github actions</p>
-        <p class="tags"><span>AWS</span><span>VPC</span><span>Subnet</span><span>Route-Table</span><span>Security-Group</span><span>GitHub</span></p>
-      </article>
-      <article class="card project-card" data-cat="devops">
-        <div class="card-head">
-          <h3>jenkins-Fundamentals-Project</h3>
-          <a href="https://github.com/devaghanekar23" target="_blank" rel="noopener" class="code-btn" aria-label="Jenkins Fundamentals GitHub" title="View Source Code"><i class="fab fa-github"></i></a>
-        </div>
-        <p>jenkins fundamentals project</p>
-        <p class="tags"><span>Jenkins</span><span>Git</span><span>Pipeline</span><span>JenkinsFile</span></p>
-      </article>
+  </div>
+
+  <!-- Floating Toast Notification -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- Spotlight Command Palette Modal (Ctrl + K) -->
+  <div id="cmdPalette" class="cmd-palette" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-label="Command Palette">
+    <div class="cmd-backdrop" id="cmdBackdrop"></div>
+    <div class="cmd-dialog">
+      <div class="cmd-search-wrap">
+        <i class="fas fa-terminal cmd-search-icon"></i>
+        <input type="text" id="cmdInput" class="cmd-input"
+          placeholder="Type a command or jump to section (e.g. 'pipeline', 'terminal', 'resume')..." autocomplete="off"
+          spellcheck="false">
+        <kbd class="cmd-hint-kbd">ESC</kbd>
+      </div>
+      <div class="cmd-list" id="cmdList" role="listbox"></div>
+      <div class="cmd-footer">
+        <span><kbd>↑</kbd><kbd>↓</kbd> Navigate</span>
+        <span><kbd>↵</kbd> Select</span>
+        <span><kbd>ESC</kbd> Close</span>
+      </div>
     </div>
   </div>
-</section>
 
-<section id="education" class="alt">
-  <div class="wrap">
-    <h2 class="title">Education</h2>
-    <ol class="edu">
-      <li class="edu-item latest">
-        <span class="edu-icon"><i class="fas fa-graduation-cap"></i></span>
-        <div class="edu-card">
-          <div class="edu-top"><h3>B.Sc Computer Science</h3><span class="edu-year">2023 - 2026</span></div>
-          <p class="edu-school">University of Mumbai</p>
-          <p class="edu-note">Bachelor's degree in Computer Science. Completed.</p>
-        </div>
-      </li>
-      <li class="edu-item">
-        <span class="edu-icon"><i class="fas fa-book-open"></i></span>
-        <div class="edu-card">
-          <div class="edu-top"><h3>Higher Secondary (HSC)</h3><span class="edu-year">2021 - 2023</span></div>
-          <p class="edu-school">Maharashtra State Board</p>
-          <p class="edu-note">12th, Science stream. Completed.</p>
-        </div>
-      </li>
-      <li class="edu-item">
-        <span class="edu-icon"><i class="fas fa-school"></i></span>
-        <div class="edu-card">
-          <div class="edu-top"><h3>High School (SSC)</h3><span class="edu-year">2020 - 2021</span></div>
-          <p class="edu-school">Maharashtra State Board</p>
-          <p class="edu-note">10th standard. Completed.</p>
-        </div>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<section id="experience">
-  <div class="wrap">
-    <h2 class="title">Experience</h2>
-    <div class="grid two">
-      <article class="card exp-card">
-        <p class="meta"><b class="badge">Current</b>2026 - Present</p>
-        <h3>Junior DevOps Engineer</h3>
-        <p class="company">Propjini CRM</p>
-        <p>Building automated CI/CD pipelines, managing cloud infrastructure on AWS, and orchestrating containerized services to ensure reliable and fast software delivery.</p>
-        <div class="exp-tech-tags">
-          <span>AWS</span><span>Docker</span><span>CI/CD</span><span>Linux</span><span>Git</span>
-        </div>
-      </article>
-      <article class="card exp-card">
-        <p class="meta"><b class="badge open">Open</b>Looking for roles</p>
-        <h3>Fresher / DevOps Engineer</h3>
-        <p class="company">Open to Opportunities</p>
-        <p>Passionate about DevOps, container orchestration with Kubernetes, and Infrastructure as Code. Ready to add value to scalable engineering teams.</p>
-        <div class="exp-tech-tags">
-          <span>Kubernetes</span><span>Terraform</span><span>Jenkins</span><span>Cloud</span>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="certificates" class="alt">
-  <div class="wrap">
-    <h2 class="title">Certificates</h2>
-    <div class="certs">
-      <a href="images/Git%20Linux%20AWS%20Certificate.jpg" data-title="Git Linux AWS Certificate" class="cert-link"><i class="fab fa-git-alt"></i><span>Git Linux AWS</span><i class="fas fa-expand cert-expand" aria-hidden="true"></i></a>
-      <a href="images/Jenkins.jpg" data-title="Jenkins CI/CD Certificate" class="cert-link"><i class="fab fa-jenkins"></i><span>Jenkins</span><i class="fas fa-expand cert-expand" aria-hidden="true"></i></a>
-      <a href="images/docker.jpeg" data-title="Docker Containerization Certificate" class="cert-link"><i class="fab fa-docker"></i><span>Docker</span><i class="fas fa-expand cert-expand" aria-hidden="true"></i></a>
-      <a href="images/kubernetes.jpg" data-title="Kubernetes Cluster &amp; Orchestration Certificate" class="cert-link"><i class="fas fa-dharmachakra"></i><span>Kubernetes</span><i class="fas fa-expand cert-expand" aria-hidden="true"></i></a>
-      <a href="images/terraform.svg" data-title="Terraform Infrastructure as Code Certificate" class="cert-link"><i class="fas fa-cubes"></i><span>Terraform</span><i class="fas fa-expand cert-expand" aria-hidden="true"></i></a>
-      <a href="images/ansible.svg" data-title="Ansible Configuration Management Certificate" class="cert-link"><svg class="cert-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 0a12 12 0 1 0 12 12A12.013 12.013 0 0 0 12 0zm5.82 17.65h-2.18l-1.04-2.82H9.4l-.57 1.54-.72 1.28H6l5.06-12.7h1.88l5.06 12.7h-.18zm-4.04-4.54l-1.78-4.82-1.78 4.82h3.56z"/></svg><span>Ansible</span><i class="fas fa-expand cert-expand" aria-hidden="true"></i></a>
-      <a href="images/real-time-monitoring.svg" data-title="Real-Time Cloud Monitoring Certificate" class="cert-link"><i class="fas fa-chart-line"></i><span>Real-Time Monitoring</span><i class="fas fa-expand cert-expand" aria-hidden="true"></i></a>
-      <a href="images/internship.jpeg" data-title="DevOps Internship Certificate" class="cert-link"><i class="fas fa-briefcase"></i><span>Internship</span><i class="fas fa-expand cert-expand" aria-hidden="true"></i></a>
-      <a href="images/video%20editing.jpeg" data-title="Video Editing Certificate" class="cert-link"><i class="fas fa-film"></i><span>Video Editing</span><i class="fas fa-expand cert-expand" aria-hidden="true"></i></a>
-      <a href="images/12th.jpeg" data-title="12th Science Certificate" class="cert-link"><i class="fas fa-book-open"></i><span>12th Science</span><i class="fas fa-expand cert-expand" aria-hidden="true"></i></a>
-      <a href="images/ncc%20b%20cert.jpeg" data-title="NCC 'B' Certificate" class="cert-link"><i class="fas fa-medal"></i><span>NCC 'B' Certificate</span><i class="fas fa-expand cert-expand" aria-hidden="true"></i></a>
-      <a href="images/ncc%20c%20cert.jpeg" data-title="NCC 'C' Certificate" class="cert-link"><i class="fas fa-medal"></i><span>NCC 'C' Certificate</span><i class="fas fa-expand cert-expand" aria-hidden="true"></i></a>
-      <!-- Add your degree file to images/ and remove the comment marks to show it:
-      <a href="images/bsc-computer-science.jpeg" target="_blank" rel="noopener"><i class="fas fa-graduation-cap"></i>B.Sc Computer Science</a> -->
-    </div>
-  </div>
-</section>
-
-<section id="achievements">
-  <div class="wrap">
-    <h2 class="title">Achievements</h2>
-    <div class="grid">
-      <article class="card"><h3>3+ web projects</h3><p>Built responsive web apps with clean code and modern layouts.</p></article>
-      <article class="card"><h3>Learning DevOps</h3><p>Working with CI/CD pipelines, Docker containers and cloud deployment.</p></article>
-      <article class="card"><h3>Active on GitHub</h3><p>Keeping repositories organised and committing regularly.</p></article>
-      <article class="card"><h3>NCC cadet</h3><p>Built leadership, discipline and teamwork through NCC training.</p></article>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="alt">
-  <div class="wrap contact">
-    <div>
-      <h2 class="title">Contact me</h2>
-      <p class="lead">Have an opportunity or a question? Send a message and I will reply by email.</p>
-      <ul class="facts">
-        <li><i class="fas fa-envelope"></i><a href="mailto:devaghanekar23@gmail.com">devaghanekar23@gmail.com</a><button type="button" class="copy-email-btn" data-email="devaghanekar23@gmail.com" aria-label="Copy email" title="Copy email"><i class="far fa-copy"></i></button></li>
-        <li><i class="fas fa-location-dot"></i>Virar (East), Maharashtra</li>
-      </ul>
-      <a href="resume/Resume.pdf" download class="btn ghost"><i class="fa-regular fa-file-pdf"></i> Download resume</a>
-    </div>
-    <form class="form" id="form">
-      <label>Your name<input name="name" type="text" required autocomplete="name"></label>
-      <label>Your email<input name="email" type="email" required autocomplete="email"></label>
-      <label>Message<textarea name="message" rows="5" required></textarea></label>
-      <button type="submit" class="btn primary">Send message</button>
-      <p id="status" role="status"></p>
-    </form>
-  </div>
-</section>
-</main>
-
-<footer class="footer"><div class="wrap"><span>Devendra Ghanekar</span><span>&copy; <span id="year">2026</span> All rights reserved</span></div></footer>
-<button id="topBtn" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
-
-<!-- Certificate Lightbox Modal -->
-<div id="certModal" class="cert-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Certificate Preview">
-  <div class="cert-backdrop" id="certBackdrop"></div>
-  <div class="cert-dialog">
-    <button type="button" class="cert-close" id="certClose" aria-label="Close certificate preview"><i class="fas fa-xmark"></i></button>
-    <div class="cert-body">
-      <img id="certImg" src="" alt="Certificate preview">
-    </div>
-    <div class="cert-meta">
-      <h3 id="certTitle">Certificate Preview</h3>
-      <a id="certDownload" href="" target="_blank" rel="noopener" class="btn ghost btn-sm"><i class="fas fa-arrow-up-right-from-square"></i> Open Full Image</a>
-    </div>
-  </div>
-</div>
-
-<!-- Floating Toast Notification -->
-<div id="toast" class="toast" role="status" aria-live="polite"></div>
-
-<!-- Spotlight Command Palette Modal (Ctrl + K) -->
-<div id="cmdPalette" class="cmd-palette" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Command Palette">
-  <div class="cmd-backdrop" id="cmdBackdrop"></div>
-  <div class="cmd-dialog">
-    <div class="cmd-search-wrap">
-      <i class="fas fa-terminal cmd-search-icon"></i>
-      <input type="text" id="cmdInput" class="cmd-input" placeholder="Type a command or jump to section (e.g. 'pipeline', 'terminal', 'resume')..." autocomplete="off" spellcheck="false">
-      <kbd class="cmd-hint-kbd">ESC</kbd>
-    </div>
-    <div class="cmd-list" id="cmdList" role="listbox"></div>
-    <div class="cmd-footer">
-      <span><kbd>↑</kbd><kbd>↓</kbd> Navigate</span>
-      <span><kbd>↵</kbd> Select</span>
-      <span><kbd>ESC</kbd> Close</span>
-    </div>
-  </div>
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>

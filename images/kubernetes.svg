@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1226"/>
+      <stop offset="50%" stop-color="#0e1731"/>
+      <stop offset="100%" stop-color="#070c1a"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="900" height="600" fill="url(#bgGrad)"/>
+  <rect width="900" height="600" fill="url(#glow)"/>
+
+  <!-- Border & Frame -->
+  <rect x="24" y="24" width="852" height="552" rx="16" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
+  <rect x="36" y="36" width="828" height="528" rx="12" fill="none" stroke="url(#accentGrad)" stroke-width="1.5" stroke-dasharray="8 6"/>
+
+  <!-- Corner Decors -->
+  <path d="M 40 70 L 40 40 L 70 40" fill="none" stroke="#38bdf8" stroke-width="4"/>
+  <path d="M 860 70 L 860 40 L 830 40" fill="none" stroke="#38bdf8" stroke-width="4"/>
+  <path d="M 40 530 L 40 560 L 70 560" fill="none" stroke="#38bdf8" stroke-width="4"/>
+  <path d="M 860 530 L 860 560 L 830 560" fill="none" stroke="#38bdf8" stroke-width="4"/>
+
+  <!-- Badge / Icon -->
+  <g transform="translate(450, 110)">
+    <circle r="44" fill="rgba(56, 189, 248, 0.1)" stroke="#38bdf8" stroke-width="2"/>
+    <!-- Wheel / K8s inspired icon -->
+    <circle r="18" fill="none" stroke="#38bdf8" stroke-width="3"/>
+    <circle r="6" fill="#38bdf8"/>
+    <path d="M 0 -32 L 0 -18 M 0 18 L 0 32 M -32 0 L -18 0 M 18 0 L 32 0 M -22 -22 L -13 -13 M 13 13 L 22 22 M -22 22 L -13 13 M 13 -13 L 22 -22" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Header -->
+  <text x="450" y="195" text-anchor="middle" font-family="'Sora', sans-serif" font-size="14" font-weight="700" fill="#38bdf8" letter-spacing="4">CERTIFICATE OF COMPLETION</text>
+  <text x="450" y="240" text-anchor="middle" font-family="'Sora', sans-serif" font-size="32" font-weight="800" fill="#ffffff" letter-spacing="-0.5">Kubernetes Cluster &amp; Orchestration</text>
+
+  <!-- Subtitle -->
+  <text x="450" y="275" text-anchor="middle" font-family="'Manrope', sans-serif" font-size="15" fill="#94a3b8">This certificate is proudly awarded to</text>
+
+  <!-- Recipient Name -->
+  <text x="450" y="335" text-anchor="middle" font-family="'Sora', sans-serif" font-size="34" font-weight="800" fill="url(#accentGrad)">Devendra Ghanekar</text>
+  <line x1="280" y1="355" x2="620" y2="355" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+
+  <!-- Description -->
+  <text x="450" y="395" text-anchor="middle" font-family="'Manrope', sans-serif" font-size="15" fill="#cbd5e1">For successfully mastering container orchestration, Helm deployments,</text>
+  <text x="450" y="420" text-anchor="middle" font-family="'Manrope', sans-serif" font-size="15" fill="#cbd5e1">pod lifecycle, ingress controllers, and scalable cluster management.</text>
+
+  <!-- Footer Meta -->
+  <g transform="translate(180, 490)">
+    <text x="0" y="0" font-family="'Manrope', sans-serif" font-size="12" fill="#64748b" font-weight="600">SPECIALIZATION</text>
+    <text x="0" y="20" font-family="'Sora', sans-serif" font-size="15" fill="#38bdf8" font-weight="700">DevOps &amp; Cloud</text>
+  </g>
+
+  <g transform="translate(450, 490)">
+    <circle cx="0" cy="10" r="22" fill="rgba(52, 211, 153, 0.12)" stroke="#34d399" stroke-width="1.5"/>
+    <text x="0" y="15" text-anchor="middle" font-family="'Sora', sans-serif" font-size="12" font-weight="700" fill="#34d399">VERIFIED</text>
+  </g>
+
+  <g transform="translate(720, 490)">
+    <text x="0" y="0" text-anchor="end" font-family="'Manrope', sans-serif" font-size="12" fill="#64748b" font-weight="600">ISSUED YEAR</text>
+    <text x="0" y="20" text-anchor="end" font-family="'Sora', sans-serif" font-size="15" fill="#ffffff" font-weight="700">2026</text>
+  </g>
+</svg>
