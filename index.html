@@ -30,11 +30,26 @@
     <div class="wrap bar">
       <a href="#home" class="logo">Devendra<span>.</span></a>
       <nav id="nav" aria-label="Main">
-        <a href="#about">About</a><a href="#skills">Skills</a><a href="#pipeline">Workflow</a><a
-          href="#terminal">Terminal</a><a href="#projects">Projects</a>
-        <a href="#education">Education</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+        <a href="#about">About</a><a href="#ecosystem">DevOps Bot</a><a href="#skills">Skills</a><a href="#pipeline">Workflow</a><a
+          href="#monitoring">Monitoring</a><a href="#terminal">Terminal</a><a href="#projects">Projects</a>
+        <a href="#education">Education</a><a href="#experience">Experience</a><a href="#certificates">Certificates</a><a href="#contact">Contact</a>
       </nav>
       <div class="bar-actions">
+        <div class="theme-switcher" id="themeSwitcher" title="Change Theme Accent">
+          <button type="button" class="theme-btn" id="themeBtn" aria-label="Toggle Theme Menu" aria-expanded="false">
+            <span class="theme-dot" id="currentThemeDot"></span>
+            <i class="fas fa-palette"></i>
+          </button>
+          <div class="theme-menu" id="themeMenu" role="menu" aria-label="Theme Accents">
+            <button type="button" class="theme-opt active" data-theme="cyan" role="menuitem"><span class="color-swatch cyan"></span>Docker Cyan</button>
+            <button type="button" class="theme-opt" data-theme="emerald" role="menuitem"><span class="color-swatch emerald"></span>K8s Emerald</button>
+            <button type="button" class="theme-opt" data-theme="violet" role="menuitem"><span class="color-swatch violet"></span>IaC Violet</button>
+            <button type="button" class="theme-opt" data-theme="orange" role="menuitem"><span class="color-swatch orange"></span>AWS Amber</button>
+          </div>
+        </div>
+        <button type="button" class="sound-btn" id="soundBtn" aria-label="Toggle Sci-Fi Audio FX" title="Enable Sci-Fi Audio FX (Muted by default)">
+          <i class="fas fa-volume-xmark" id="soundIcon"></i>
+        </button>
         <button type="button" class="cmd-hud-btn" id="cmdHudBtn" aria-label="Command Palette (Ctrl+K)"
           title="Press Ctrl + K to open Command Palette"><i class="fas fa-terminal"></i><span class="hud-kbd">Ctrl
             K</span></button>
@@ -116,41 +131,298 @@
       </div>
     </section>
 
+    <section id="ecosystem" class="ecosystem-section alt">
+      <div class="wrap">
+        <div class="ecosystem-header">
+          <div class="mon-badge">
+            <span class="beacon-dot"></span>
+            <span>Automated DevOps Bot</span>
+          </div>
+          <h2 class="title">DevOps Robot Ecosystem</h2>
+          <p class="section-desc">Interactive 3D cloud assistant coordinating Devendra's core DevOps toolchain in continuous circular harmony.</p>
+        </div>
+
+        <div class="bot-stage-container">
+          <!-- Speech / Interaction Bubble -->
+          <div class="bot-speech" id="botSpeechBubble" role="status" aria-live="polite">
+            <div class="bot-speech-inner">
+              <span class="bot-speech-icon" aria-hidden="true">🤖</span>
+              <p id="botSpeechText">Hi! I coordinate Devendra's DevOps stack. Hover over any orbiting tool to inspect its role!</p>
+            </div>
+          </div>
+
+          <!-- Central Robot and Orbital Solar System -->
+          <div class="bot-orbit-stage" id="botOrbitStage">
+            <!-- Concentric Orbital Glow Rings -->
+            <div class="orbit-ring-guide outer-ring" aria-hidden="true"></div>
+            <div class="orbit-ring-guide inner-ring" aria-hidden="true"></div>
+
+            <!-- Central 3D Robot -->
+            <div class="bot-centerpiece" id="botCenterpiece" title="DevOps Cloud Assistant">
+              <div class="bot-img-wrap">
+                <img src="images/devops-robot.jpg" alt="DevOps Robot Mascot" class="bot-avatar-img" width="220" height="220">
+              </div>
+              <div class="bot-holo-disc" aria-hidden="true">
+                <div class="holo-core"></div>
+              </div>
+            </div>
+
+            <!-- Revolving Orbital Track with 11 DevOps Tools -->
+            <div class="orbit-track" id="orbitTrack">
+              <!-- AWS -->
+              <div class="orbit-item" style="--angle: 0deg;" data-tool="aws">
+                <div class="orbit-item-inner">
+                  <div class="orbit-badge">
+                    <img src="images/aws.svg" alt="AWS" onerror="this.outerHTML='<i class=\'fab fa-aws\'></i>'">
+                    <span class="orbit-label">AWS</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Linux -->
+              <div class="orbit-item" style="--angle: 32.7deg;" data-tool="linux">
+                <div class="orbit-item-inner">
+                  <div class="orbit-badge">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+                    <span class="orbit-label">Linux</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Jenkins -->
+              <div class="orbit-item" style="--angle: 65.5deg;" data-tool="jenkins">
+                <div class="orbit-item-inner">
+                  <div class="orbit-badge">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" alt="Jenkins">
+                    <span class="orbit-label">Jenkins</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Docker -->
+              <div class="orbit-item" style="--angle: 98.2deg;" data-tool="docker">
+                <div class="orbit-item-inner">
+                  <div class="orbit-badge">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
+                    <span class="orbit-label">Docker</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Kubernetes -->
+              <div class="orbit-item" style="--angle: 130.9deg;" data-tool="k8s">
+                <div class="orbit-item-inner">
+                  <div class="orbit-badge">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-original.svg" alt="Kubernetes">
+                    <span class="orbit-label">K8s</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ansible -->
+              <div class="orbit-item" style="--angle: 163.6deg;" data-tool="ansible">
+                <div class="orbit-item-inner">
+                  <div class="orbit-badge">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansible/ansible-original.svg" alt="Ansible">
+                    <span class="orbit-label">Ansible</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Terraform -->
+              <div class="orbit-item" style="--angle: 196.4deg;" data-tool="terraform">
+                <div class="orbit-item-inner">
+                  <div class="orbit-badge">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" alt="Terraform">
+                    <span class="orbit-label">Terraform</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Prometheus -->
+              <div class="orbit-item" style="--angle: 229.1deg;" data-tool="prometheus">
+                <div class="orbit-item-inner">
+                  <div class="orbit-badge">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg" alt="Prometheus">
+                    <span class="orbit-label">Prometheus</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Grafana -->
+              <div class="orbit-item" style="--angle: 261.8deg;" data-tool="grafana">
+                <div class="orbit-item-inner">
+                  <div class="orbit-badge">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" alt="Grafana">
+                    <span class="orbit-label">Grafana</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Git -->
+              <div class="orbit-item" style="--angle: 294.5deg;" data-tool="git">
+                <div class="orbit-item-inner">
+                  <div class="orbit-badge">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+                    <span class="orbit-label">Git</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- GitHub -->
+              <div class="orbit-item" style="--angle: 327.3deg;" data-tool="github">
+                <div class="orbit-item-inner">
+                  <div class="orbit-badge">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+                    <span class="orbit-label">GitHub</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Orbit Controls -->
+          <div class="orbit-controls-bar">
+            <button type="button" class="btn ghost btn-sm orbit-ctrl-btn" id="orbitPauseBtn" aria-label="Pause or resume orbital rotation">
+              <i class="fas fa-pause"></i> <span id="orbitPauseText">Pause Orbit</span>
+            </button>
+            <button type="button" class="btn ghost btn-sm orbit-ctrl-btn" id="orbitSpeedBtn" aria-label="Toggle speed">
+              <i class="fas fa-forward-fast"></i> <span id="orbitSpeedText">2x Speed</span>
+            </button>
+            <button type="button" class="btn ghost btn-sm orbit-ctrl-btn" id="orbitWaveBtn" aria-label="Make robot wave">
+              <i class="fas fa-hand"></i> <span>Say Hello</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="skills" class="alt">
       <div class="wrap">
-        <h2 class="title">Skills</h2>
-        <h3 class="sub">Frontend</h3>
-        <ul class="skills">
-          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
-                alt=""></span>HTML</li>
-          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
-                alt=""></span>CSS</li>
-          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                alt=""></span>JavaScript</li>
-          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg"
-                alt=""></span>jQuery</li>
+        <div class="skills-header-row">
+          <div>
+            <h2 class="title">Technical Expertise</h2>
+            <p class="section-desc">DevOps tooling, cloud infrastructure, container orchestration, and modern web development.</p>
+          </div>
+          <div class="skills-filter-tabs" role="tablist" aria-label="Skills Category Filter">
+            <button type="button" class="skill-tab active" data-cat="all">All Skills</button>
+            <button type="button" class="skill-tab" data-cat="cloud">Cloud &amp; DevOps</button>
+            <button type="button" class="skill-tab" data-cat="infra">Containers &amp; IaC</button>
+            <button type="button" class="skill-tab" data-cat="web">Frontend &amp; Web</button>
+          </div>
+        </div>
 
-        </ul>
-        <h3 class="sub">DevOps and cloud</h3>
-        <ul class="skills">
-          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt=""></span>Git
-          </li>
-          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-                alt=""></span>GitHub</li>
-          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg"
-                alt=""></span>Jenkins</li>
-          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
-                alt=""></span>Docker</li>
-          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-original.svg"
-                alt=""></span>Kubernetes</li>
-          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg"
-                alt=""></span>Terraform</li>
-          <li><span><img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg"
-                alt=""></span>AWS</li>
-          <li><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
-                alt=""></span>Linux</li>
-        </ul>
+        <div class="skills-grid" id="skillsGrid">
+          <!-- Cloud & DevOps -->
+          <div class="skill-card" data-cat="cloud">
+            <div class="skill-icon-wrap"><img src="images/aws.svg" alt="AWS" onerror="this.outerHTML='<i class=\'fab fa-aws\'></i>'"></div>
+            <div class="skill-info">
+              <div class="skill-meta-top"><span class="skill-name">AWS Cloud</span><span class="skill-pct">85%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-progress="85%"></div></div>
+              <p class="skill-tags"><span>VPC</span><span>EC2</span><span>ECS</span><span>ECR</span><span>S3</span></p>
+            </div>
+          </div>
+
+          <div class="skill-card" data-cat="infra">
+            <div class="skill-icon-wrap"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"></div>
+            <div class="skill-info">
+              <div class="skill-meta-top"><span class="skill-name">Docker</span><span class="skill-pct">90%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-progress="90%"></div></div>
+              <p class="skill-tags"><span>Multi-Stage</span><span>Dockerfiles</span><span>Compose</span></p>
+            </div>
+          </div>
+
+          <div class="skill-card" data-cat="infra">
+            <div class="skill-icon-wrap"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-original.svg" alt="Kubernetes"></div>
+            <div class="skill-info">
+              <div class="skill-meta-top"><span class="skill-name">Kubernetes</span><span class="skill-pct">82%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-progress="82%"></div></div>
+              <p class="skill-tags"><span>Helm Charts</span><span>Pods</span><span>Services</span><span>Ingress</span></p>
+            </div>
+          </div>
+
+          <div class="skill-card" data-cat="infra">
+            <div class="skill-icon-wrap"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" alt="Terraform"></div>
+            <div class="skill-info">
+              <div class="skill-meta-top"><span class="skill-name">Terraform (IaC)</span><span class="skill-pct">78%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-progress="78%"></div></div>
+              <p class="skill-tags"><span>HCL</span><span>Modules</span><span>State Mgmt</span><span>AWS Provider</span></p>
+            </div>
+          </div>
+
+          <div class="skill-card" data-cat="cloud">
+            <div class="skill-icon-wrap"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" alt="Jenkins"></div>
+            <div class="skill-info">
+              <div class="skill-meta-top"><span class="skill-name">Jenkins CI/CD</span><span class="skill-pct">88%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-progress="88%"></div></div>
+              <p class="skill-tags"><span>Jenkinsfile</span><span>Pipelines</span><span>Webhooks</span><span>Plugins</span></p>
+            </div>
+          </div>
+
+          <div class="skill-card" data-cat="cloud">
+            <div class="skill-icon-wrap"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"></div>
+            <div class="skill-info">
+              <div class="skill-meta-top"><span class="skill-name">Linux &amp; Bash</span><span class="skill-pct">90%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-progress="90%"></div></div>
+              <p class="skill-tags"><span>Shell Scripts</span><span>Systemd</span><span>SSH</span><span>CLI Admin</span></p>
+            </div>
+          </div>
+
+          <div class="skill-card" data-cat="cloud">
+            <div class="skill-icon-wrap"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"></div>
+            <div class="skill-info">
+              <div class="skill-meta-top"><span class="skill-name">Git &amp; GitHub</span><span class="skill-pct">92%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-progress="92%"></div></div>
+              <p class="skill-tags"><span>Actions</span><span>Branching</span><span>PR Review</span><span>Rebase</span></p>
+            </div>
+          </div>
+
+          <div class="skill-card" data-cat="cloud">
+            <div class="skill-icon-wrap"><svg class="skill-svg-icon" viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 0a12 12 0 1 0 12 12A12.013 12.013 0 0 0 12 0zm5.82 17.65h-2.18l-1.04-2.82H9.4l-.57 1.54-.72 1.28H6l5.06-12.7h1.88l5.06 12.7h-.18zm-4.04-4.54l-1.78-4.82-1.78 4.82h3.56z"/></svg></div>
+            <div class="skill-info">
+              <div class="skill-meta-top"><span class="skill-name">Ansible</span><span class="skill-pct">75%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-progress="75%"></div></div>
+              <p class="skill-tags"><span>Playbooks</span><span>YAML</span><span>Roles</span><span>Automation</span></p>
+            </div>
+          </div>
+
+          <!-- Web & Frontend -->
+          <div class="skill-card" data-cat="web">
+            <div class="skill-icon-wrap"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"></div>
+            <div class="skill-info">
+              <div class="skill-meta-top"><span class="skill-name">HTML5</span><span class="skill-pct">95%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-progress="95%"></div></div>
+              <p class="skill-tags"><span>Semantic HTML</span><span>SEO</span><span>Accessibility</span></p>
+            </div>
+          </div>
+
+          <div class="skill-card" data-cat="web">
+            <div class="skill-icon-wrap"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"></div>
+            <div class="skill-info">
+              <div class="skill-meta-top"><span class="skill-name">CSS3 &amp; Animations</span><span class="skill-pct">90%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-progress="90%"></div></div>
+              <p class="skill-tags"><span>Flexbox</span><span>Grid</span><span>Keyframes</span><span>Responsive</span></p>
+            </div>
+          </div>
+
+          <div class="skill-card" data-cat="web">
+            <div class="skill-icon-wrap"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"></div>
+            <div class="skill-info">
+              <div class="skill-meta-top"><span class="skill-name">JavaScript (ES6+)</span><span class="skill-pct">82%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-progress="82%"></div></div>
+              <p class="skill-tags"><span>Async/Await</span><span>DOM APIs</span><span>JSON</span><span>SPA</span></p>
+            </div>
+          </div>
+
+          <div class="skill-card" data-cat="web">
+            <div class="skill-icon-wrap"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg" alt="jQuery"></div>
+            <div class="skill-info">
+              <div class="skill-meta-top"><span class="skill-name">jQuery</span><span class="skill-pct">85%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-progress="85%"></div></div>
+              <p class="skill-tags"><span>DOM Traversal</span><span>AJAX</span><span>Event Handling</span></p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -200,6 +472,118 @@
             <div class="pipe-icon"><i class="fab fa-aws"></i></div>
             <h3>Cloud Deploy</h3>
             <p>AWS VPC, ECS, EC2 & Fargate live</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="monitoring" class="monitoring-section alt">
+      <div class="wrap">
+        <div class="mon-header">
+          <div>
+            <div class="mon-badge">
+              <span class="beacon-dot"></span>
+              <span>DevOps Telemetry</span>
+            </div>
+            <h2 class="title">Cloud Cluster Observability</h2>
+            <p class="mon-desc">Live simulated Kubernetes cluster metrics, node pod distribution, and automated self-healing across AWS ap-south-1.</p>
+          </div>
+          <div class="mon-cluster-pill">
+            <span class="mon-status-indicator"></span>
+            <div>
+              <b id="monClusterState">All Systems Normal</b>
+              <span>Cluster: k8s-prod-mumbai-01</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mon-grid">
+          <!-- Card 1: Pod Health Grid -->
+          <div class="card mon-card">
+            <div class="mon-card-top">
+              <span class="mon-card-label"><i class="fas fa-cubes-stacked"></i> Pod Distribution &amp; Health</span>
+              <span class="mon-card-tag ok" id="podHealthTag">24/24 Running</span>
+            </div>
+            <div class="mon-card-val"><span id="podActiveCount">24</span> <small>/ 24 Pods Online</small></div>
+            <div class="pod-visual-grid" id="podVisualGrid" aria-label="Visual representation of running pods">
+              <!-- 24 animated pod blocks injected via JS -->
+            </div>
+            <div class="mon-card-sub">
+              <span>0 CrashLoopBackOff</span>
+              <span>HPA: 3 Replicas</span>
+            </div>
+          </div>
+
+          <!-- Card 2: CPU Sparkline -->
+          <div class="card mon-card">
+            <div class="mon-card-top">
+              <span class="mon-card-label"><i class="fas fa-microchip"></i> Cluster CPU Telemetry</span>
+              <span class="mon-card-tag" id="cpuLoadTag">Optimal</span>
+            </div>
+            <div class="mon-card-val"><span id="monCpuVal">34.2</span><small>% Load</small></div>
+            <div class="canvas-wrap">
+              <canvas id="cpuSparkline" height="58"></canvas>
+            </div>
+            <div class="mon-card-sub">
+              <span>Peak: 48.6%</span>
+              <span id="monLatency">Latency: 24ms</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Memory Allocation -->
+          <div class="card mon-card">
+            <div class="mon-card-top">
+              <span class="mon-card-label"><i class="fas fa-memory"></i> Memory &amp; Storage</span>
+              <span class="mon-card-tag" id="memLoadTag">61% Allocated</span>
+            </div>
+            <div class="mon-card-val"><span id="monMemVal">2.44</span> <small>GB / 4.00 GB</small></div>
+            <div class="mon-progress-bar">
+              <div class="mon-progress-fill" id="monMemFill" style="width: 61%"></div>
+            </div>
+            <div class="mon-card-sub">
+              <span>Rx: 2.1 MB/s</span>
+              <span>Tx: 5.4 MB/s</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Security & Compliance -->
+          <div class="card mon-card">
+            <div class="mon-card-top">
+              <span class="mon-card-label"><i class="fas fa-shield-halved"></i> Security &amp; Audit</span>
+              <span class="mon-card-tag ok" id="secScanTag">Grade A+</span>
+            </div>
+            <div class="mon-card-val"><span>Trivy Clean</span> <small>0 CVEs</small></div>
+            <div class="mon-audit-list">
+              <div><i class="fas fa-check-circle text-ok"></i> CIS Benchmark: 98% passed</div>
+              <div><i class="fas fa-check-circle text-ok"></i> TLS 1.3 Strict &amp; ALB Ingress</div>
+            </div>
+            <div class="mon-card-sub">
+              <span>Policy: OPA Gatekeeper</span>
+              <span class="text-ok">RBAC Enforced</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Simulation Controls -->
+        <div class="mon-sim-panel">
+          <div class="sim-panel-header">
+            <h4><i class="fas fa-terminal"></i> Test Live DevOps Cluster Resilience:</h4>
+            <span class="sim-hint">Simulate real-world cloud events and watch telemetry metrics respond in real time</span>
+          </div>
+          <div class="sim-btn-row">
+            <button type="button" class="btn ghost btn-sm sim-btn" id="simSpikeBtn">
+              <i class="fas fa-bolt"></i> Simulate Traffic Spike (HPA)
+            </button>
+            <button type="button" class="btn ghost btn-sm sim-btn" id="simRolloutBtn">
+              <i class="fas fa-rocket"></i> Trigger Zero-Downtime Rollout
+            </button>
+            <button type="button" class="btn ghost btn-sm sim-btn" id="simScanBtn">
+              <i class="fas fa-shield-halved"></i> Run Trivy Vulnerability Scan
+            </button>
+          </div>
+          <div class="sim-log-bar" id="simLogBar">
+            <span class="log-indicator"></span>
+            <span id="simLogText">Cluster idle and healthy in AWS ap-south-1. Ready for test simulations.</span>
           </div>
         </div>
       </div>
@@ -273,6 +657,10 @@
             <p>Event management app. Browse events, register for seats, and manage events and attendees from a
               dashboard. Ships with Docker and Kubernetes files.</p>
             <p class="tags"><span>React</span><span>Docker</span><span>Kubernetes</span></p>
+            <div class="card-actions">
+              <button type="button" class="spec-btn" data-project="eventhub"><i class="fas fa-network-wired"></i> Architecture</button>
+              <a href="https://github.com/devaghanekar23" target="_blank" rel="noopener" class="btn-code-link"><i class="fab fa-github"></i> Repo</a>
+            </div>
           </article>
           <article class="card project-card" data-cat="devops web">
             <div class="card-head">
@@ -283,6 +671,10 @@
             <p>Frontend and backend weather app deployed to Kubernetes with a Helm chart. Images are stored in Amazon
               ECR.</p>
             <p class="tags"><span>Helm</span><span>Kubernetes</span><span>AWS ECR</span></p>
+            <div class="card-actions">
+              <button type="button" class="spec-btn" data-project="weather"><i class="fas fa-network-wired"></i> Architecture</button>
+              <a href="https://github.com/devaghanekar23" target="_blank" rel="noopener" class="btn-code-link"><i class="fab fa-github"></i> Repo</a>
+            </div>
           </article>
           <article class="card project-card" data-cat="devops web">
             <div class="card-head">
@@ -293,6 +685,10 @@
             <p>Recipe app packaged in Docker and deployed on AWS using ECR, ECS and Fargate for a DevOps mini project.
             </p>
             <p class="tags"><span>Docker</span><span>ECS</span><span>Fargate</span></p>
+            <div class="card-actions">
+              <button type="button" class="spec-btn" data-project="hearth"><i class="fas fa-network-wired"></i> Architecture</button>
+              <a href="https://github.com/devaghanekar23" target="_blank" rel="noopener" class="btn-code-link"><i class="fab fa-github"></i> Repo</a>
+            </div>
           </article>
           <article class="card project-card" data-cat="devops">
             <div class="card-head">
@@ -304,6 +700,10 @@
             <p class="tags">
               <span>AWS</span><span>VPC</span><span>Subnet</span><span>Route-Table</span><span>Security-Group</span><span>GitHub</span>
             </p>
+            <div class="card-actions">
+              <button type="button" class="spec-btn" data-project="devops-fund"><i class="fas fa-network-wired"></i> Architecture</button>
+              <a href="https://github.com/devaghanekar23" target="_blank" rel="noopener" class="btn-code-link"><i class="fab fa-github"></i> Repo</a>
+            </div>
           </article>
           <article class="card project-card" data-cat="devops">
             <div class="card-head">
@@ -313,18 +713,23 @@
             </div>
             <p>jenkins fundamentals project</p>
             <p class="tags"><span>Jenkins</span><span>Git</span><span>Pipeline</span><span>JenkinsFile</span></p>
+            <div class="card-actions">
+              <button type="button" class="spec-btn" data-project="jenkins-fund"><i class="fas fa-network-wired"></i> Architecture</button>
+              <a href="https://github.com/devaghanekar23" target="_blank" rel="noopener" class="btn-code-link"><i class="fab fa-github"></i> Repo</a>
+            </div>
           </article>
           <article class="card project-card" data-cat="devops">
             <div class="card-head">
               <h3>kubernetes Project</h3>
               <a href="https://github.com/devaghanekar23" target="_blank" rel="noopener" class="code-btn"
-                aria-label="Jenkins Fundamentals GitHub" title="View Source Code"><i class="fab fa-github"></i></a>
+                aria-label="Kubernetes Project GitHub" title="View Source Code"><i class="fab fa-github"></i></a>
             </div>
             <p>Automating Application deployment using kubernetes and jenkins CI/CD pipeline</p>
-            <p class="tags"><span>Jenkins</span><span>Pipeline</span><span>Git</span><span>Kubernetes</span><span>Docker
-                </sspan>Bitbucket</span><span>Minikube</span>
-              <pan>
-            </p>
+            <p class="tags"><span>Jenkins</span><span>Pipeline</span><span>Git</span><span>Kubernetes</span><span>Docker</span><span>Bitbucket</span><span>Minikube</span></p>
+            <div class="card-actions">
+              <button type="button" class="spec-btn" data-project="k8s-project"><i class="fas fa-network-wired"></i> Architecture</button>
+              <a href="https://github.com/devaghanekar23" target="_blank" rel="noopener" class="btn-code-link"><i class="fab fa-github"></i> Repo</a>
+            </div>
           </article>
         </div>
       </div>
@@ -514,6 +919,43 @@
         <h3 id="certTitle">Certificate Preview</h3>
         <a id="certDownload" href="" target="_blank" rel="noopener" class="btn ghost btn-sm"><i
             class="fas fa-arrow-up-right-from-square"></i> Open Full Image</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Architecture Specs Lightbox Modal -->
+  <div id="projectModal" class="project-modal" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-label="Project Architecture Specs">
+    <div class="project-modal-backdrop" id="projectBackdrop"></div>
+    <div class="project-modal-dialog">
+      <button type="button" class="project-modal-close" id="projectClose" aria-label="Close modal"><i
+          class="fas fa-xmark"></i></button>
+      <div class="project-modal-head">
+        <div class="project-modal-badge" id="modalBadge">DevOps Cloud Architecture</div>
+        <h3 id="modalTitle">Project Architecture</h3>
+        <p id="modalDesc">Detailed cloud deployment topology, infrastructure components, and orchestration pipeline.</p>
+      </div>
+      <div class="project-modal-body">
+        <h4 class="specs-subhead"><i class="fas fa-diagram-project"></i> Deployment Topology &amp; Data Flow</h4>
+        <div class="arch-flow-diagram" id="modalArchFlow">
+          <!-- Injected dynamically via JS based on selected project -->
+        </div>
+
+        <h4 class="specs-subhead"><i class="fas fa-layer-group"></i> Key DevOps &amp; Cloud Highlights</h4>
+        <ul class="specs-list" id="modalSpecsList">
+          <!-- Injected dynamically -->
+        </ul>
+
+        <h4 class="specs-subhead"><i class="fas fa-terminal"></i> Deployment Snippet</h4>
+        <div class="deploy-cmd-box">
+          <code id="modalDeployCmd">kubectl apply -f k8s/</code>
+          <button type="button" class="copy-cmd-btn" id="copyCmdBtn" title="Copy deployment command"><i
+              class="far fa-copy"></i> Copy</button>
+        </div>
+      </div>
+      <div class="project-modal-footer">
+        <a id="modalGithubLink" href="https://github.com/devaghanekar23" target="_blank" rel="noopener"
+          class="btn primary btn-sm"><i class="fab fa-github"></i> View GitHub Repository</a>
       </div>
     </div>
   </div>

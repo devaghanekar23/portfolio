@@ -642,6 +642,7 @@ aws-ingress-alb-controller-01    <span class="term-green">1/1     Running</span>
   function executeCommand(raw) {
     const trimmed = raw.trim();
     if (!trimmed) return;
+    window.playDevaSound?.('terminal');
     history.push(trimmed);
     histIndex = history.length;
 
@@ -760,14 +761,23 @@ aws-ingress-alb-controller-01    <span class="term-green">1/1     Running</span>
   if (!palette || !input || !list) return;
 
   const COMMAND_ITEMS = [
+    { title: 'DevOps Robot Ecosystem', cat: 'Navigation', icon: 'fa-robot', badge: 'Interactive', action: () => scrollToId('ecosystem') },
     { title: 'Workflow CI/CD Pipeline', cat: 'Navigation', icon: 'fa-diagram-project', badge: 'Section', action: () => scrollToId('pipeline') },
+    { title: 'Cluster Observability (Monitoring)', cat: 'Navigation', icon: 'fa-chart-area', badge: 'Live Telemetry', action: () => scrollToId('monitoring') },
     { title: 'DevOps Cloud Terminal', cat: 'Navigation', icon: 'fa-terminal', badge: 'Interactive', action: () => { scrollToId('terminal'); focusTerminal(); } },
+    { title: 'Technical Skills Matrix', cat: 'Navigation', icon: 'fa-layer-group', badge: 'Section', action: () => scrollToId('skills') },
     { title: 'Browse Projects', cat: 'Navigation', icon: 'fa-folder-open', badge: 'Section', action: () => scrollToId('projects') },
-    { title: 'Skills & Tech Stack', cat: 'Navigation', icon: 'fa-layer-group', badge: 'Section', action: () => scrollToId('skills') },
     { title: 'About Me', cat: 'Navigation', icon: 'fa-user', badge: 'Section', action: () => scrollToId('about') },
     { title: 'Education Timeline', cat: 'Navigation', icon: 'fa-graduation-cap', badge: 'Section', action: () => scrollToId('education') },
     { title: 'Work Experience', cat: 'Navigation', icon: 'fa-briefcase', badge: 'Section', action: () => scrollToId('experience') },
     { title: 'View Certificates', cat: 'Navigation', icon: 'fa-certificate', badge: 'Section', action: () => scrollToId('certificates') },
+    { title: 'Simulate Traffic Spike (HPA)', cat: 'Simulation', icon: 'fa-bolt', badge: 'Live Test', action: () => { scrollToId('monitoring'); document.getElementById('simSpikeBtn')?.click(); } },
+    { title: 'Trigger Zero-Downtime Rollout', cat: 'Simulation', icon: 'fa-rocket', badge: 'Live Test', action: () => { scrollToId('monitoring'); document.getElementById('simRolloutBtn')?.click(); } },
+    { title: 'Run Trivy Vulnerability Scan', cat: 'Simulation', icon: 'fa-shield-halved', badge: 'Live Test', action: () => { scrollToId('monitoring'); document.getElementById('simScanBtn')?.click(); } },
+    { title: 'Theme: Docker Cyan', cat: 'Appearance', icon: 'fa-palette', badge: 'Theme', action: () => window.switchPortfolioTheme?.('cyan') },
+    { title: 'Theme: K8s Emerald', cat: 'Appearance', icon: 'fa-palette', badge: 'Theme', action: () => window.switchPortfolioTheme?.('emerald') },
+    { title: 'Theme: IaC Violet', cat: 'Appearance', icon: 'fa-palette', badge: 'Theme', action: () => window.switchPortfolioTheme?.('violet') },
+    { title: 'Theme: AWS Amber', cat: 'Appearance', icon: 'fa-palette', badge: 'Theme', action: () => window.switchPortfolioTheme?.('orange') },
     { title: 'Cert: Kubernetes Cluster', cat: 'Certificates', icon: 'fa-dharmachakra', badge: 'Credential', action: () => openCertByQuery('kubernetes') },
     { title: 'Cert: Terraform IaC', cat: 'Certificates', icon: 'fa-cubes', badge: 'Credential', action: () => openCertByQuery('terraform') },
     { title: 'Cert: Ansible Automation', cat: 'Certificates', icon: 'fa-cogs', badge: 'Credential', action: () => openCertByQuery('ansible') },
@@ -938,4 +948,698 @@ aws-ingress-alb-controller-01    <span class="term-green">1/1     Running</span>
       setTimeout(() => termInput.focus(), 600);
     }
   }
+})();
+
+// 6. Interactive Theme Switcher
+(function initThemeSwitcher() {
+  const switcher = document.getElementById('themeSwitcher');
+  const themeBtn = document.getElementById('themeBtn');
+  const themeMenu = document.getElementById('themeMenu');
+  const currentDot = document.getElementById('currentThemeDot');
+  const options = document.querySelectorAll('.theme-opt');
+  if (!switcher || !themeBtn || !themeMenu) return;
+
+  const THEMES = {
+    cyan: '#38bdf8',
+    emerald: '#10b981',
+    violet: '#a855f7',
+    orange: '#f97316'
+  };
+
+  function applyTheme(name, save = true) {
+    if (!THEMES[name]) name = 'cyan';
+    if (name === 'cyan') {
+      document.documentElement.removeAttribute('data-theme');
+    } else {
+      document.documentElement.setAttribute('data-theme', name);
+    }
+    if (currentDot) currentDot.style.background = THEMES[name];
+    options.forEach(opt => opt.classList.toggle('active', opt.dataset.theme === name));
+    if (save) localStorage.setItem('deva_theme', name);
+    window.devaActiveTheme = name;
+  }
+
+  window.switchPortfolioTheme = applyTheme;
+
+  themeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = themeMenu.classList.toggle('open');
+    themeBtn.setAttribute('aria-expanded', String(open));
+    window.playDevaSound?.('click');
+  });
+
+  options.forEach(opt => {
+    opt.addEventListener('click', () => {
+      const theme = opt.dataset.theme;
+      applyTheme(theme);
+      themeMenu.classList.remove('open');
+      themeBtn.setAttribute('aria-expanded', 'false');
+      window.playDevaSound?.('success');
+      const toastEl = document.getElementById('toast');
+      if (toastEl) {
+        toastEl.innerHTML = `<i class="fas fa-palette"></i> <span>Theme accent updated to <b>${opt.textContent.trim()}</b></span>`;
+        toastEl.classList.add('show');
+        setTimeout(() => toastEl.classList.remove('show'), 2400);
+      }
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!switcher.contains(e.target)) {
+      themeMenu.classList.remove('open');
+      themeBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  const saved = localStorage.getItem('deva_theme');
+  if (saved && THEMES[saved]) applyTheme(saved, false);
+})();
+
+// 7. Web Audio FX Synthesizer (Zero external dependencies)
+(function initSoundFX() {
+  const soundBtn = document.getElementById('soundBtn');
+  const soundIcon = document.getElementById('soundIcon');
+  let audioCtx = null;
+  let isMuted = localStorage.getItem('deva_muted') !== 'false';
+
+  function updateIcon() {
+    if (!soundIcon) return;
+    if (isMuted) {
+      soundIcon.className = 'fas fa-volume-xmark';
+      soundBtn?.setAttribute('title', 'Enable Sci-Fi Audio FX (Muted)');
+    } else {
+      soundIcon.className = 'fas fa-volume-high';
+      soundBtn?.setAttribute('title', 'Disable Sci-Fi Audio FX (Active)');
+    }
+  }
+
+  function getAudioCtx() {
+    if (!audioCtx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (AudioContext) audioCtx = new AudioContext();
+    }
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    return audioCtx;
+  }
+
+  function playSound(type) {
+    if (isMuted) return;
+    try {
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      const t = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      if (type === 'click') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(800, t);
+        osc.frequency.exponentialRampToValueAtTime(350, t + 0.04);
+        gain.gain.setValueAtTime(0.08, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.04);
+        osc.start(t);
+        osc.stop(t + 0.04);
+      } else if (type === 'success') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(520, t);
+        osc.frequency.setValueAtTime(780, t + 0.06);
+        gain.gain.setValueAtTime(0.09, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.16);
+        osc.start(t);
+        osc.stop(t + 0.16);
+      } else if (type === 'terminal') {
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(900, t);
+        osc.frequency.exponentialRampToValueAtTime(300, t + 0.03);
+        gain.gain.setValueAtTime(0.04, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.03);
+        osc.start(t);
+        osc.stop(t + 0.03);
+      }
+    } catch (_) {}
+  }
+
+  window.playDevaSound = playSound;
+
+  if (soundBtn) {
+    updateIcon();
+    soundBtn.addEventListener('click', () => {
+      isMuted = !isMuted;
+      localStorage.setItem('deva_muted', String(isMuted));
+      updateIcon();
+      if (!isMuted) {
+        playSound('success');
+        const toastEl = document.getElementById('toast');
+        if (toastEl) {
+          toastEl.innerHTML = '<i class="fas fa-volume-high"></i> <span>Sci-Fi Audio FX enabled!</span>';
+          toastEl.classList.add('show');
+          setTimeout(() => toastEl.classList.remove('show'), 2200);
+        }
+      }
+    });
+  }
+})();
+
+// 8. Technical Skills Matrix (Category Filters & Animated Progress Bars)
+(function initSkillsMatrix() {
+  const tabs = document.querySelectorAll('.skill-tab');
+  const cards = document.querySelectorAll('.skill-card');
+  const fills = document.querySelectorAll('.skill-bar-fill');
+  if (!tabs.length || !cards.length) return;
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const cat = tab.dataset.cat;
+      window.playDevaSound?.('click');
+
+      cards.forEach(card => {
+        if (cat === 'all' || card.dataset.cat === cat) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  const obs = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        fills.forEach(fill => {
+          const pct = fill.dataset.progress || '80%';
+          fill.style.width = pct;
+        });
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.15 });
+
+  const skillsSec = document.getElementById('skills');
+  if (skillsSec) obs.observe(skillsSec);
+})();
+
+// 9. DevOps Cluster Observability & Real-Time Sparkline
+(function initMonitoringDashboard() {
+  const podGrid = document.getElementById('podVisualGrid');
+  const sparkCanvas = document.getElementById('cpuSparkline');
+  const cpuVal = document.getElementById('monCpuVal');
+  const memVal = document.getElementById('monMemVal');
+  const memFill = document.getElementById('monMemFill');
+  const latencyVal = document.getElementById('monLatency');
+  const simSpikeBtn = document.getElementById('simSpikeBtn');
+  const simRolloutBtn = document.getElementById('simRolloutBtn');
+  const simScanBtn = document.getElementById('simScanBtn');
+  const simLogText = document.getElementById('simLogText');
+  const clusterState = document.getElementById('monClusterState');
+  const activeCount = document.getElementById('podActiveCount');
+  const cpuLoadTag = document.getElementById('cpuLoadTag');
+
+  if (!podGrid || !sparkCanvas) return;
+
+  const TOTAL_BASE_PODS = 24;
+  function renderPods(count = TOTAL_BASE_PODS) {
+    podGrid.innerHTML = '';
+    for (let i = 0; i < count; i++) {
+      const node = document.createElement('div');
+      node.className = 'pod-node' + (i >= TOTAL_BASE_PODS ? ' scaled-up' : '');
+      node.setAttribute('title', `Pod #app-${i + 1} • Status: Running`);
+      podGrid.appendChild(node);
+    }
+    if (activeCount) activeCount.textContent = count;
+  }
+  renderPods();
+
+  const ctx = sparkCanvas.getContext('2d');
+  let dpr = window.devicePixelRatio || 1;
+  let points = Array.from({ length: 28 }, () => Math.random() * 8 + 30);
+  let baseTarget = 34;
+
+  function drawSparkline() {
+    const parent = sparkCanvas.parentElement;
+    if (!parent) return;
+    const w = parent.clientWidth || 240;
+    const h = 58;
+    sparkCanvas.width = w * dpr;
+    sparkCanvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    ctx.clearRect(0, 0, w, h);
+
+    const step = w / (points.length - 1);
+    ctx.beginPath();
+    ctx.moveTo(0, h - (points[0] / 100) * h);
+
+    for (let i = 1; i < points.length; i++) {
+      const x = i * step;
+      const y = h - (points[i] / 100) * h;
+      const prevX = (i - 1) * step;
+      const prevY = h - (points[i - 1] / 100) * h;
+      const cx = (prevX + x) / 2;
+      ctx.bezierCurveTo(cx, prevY, cx, y, x, y);
+    }
+
+    const activeTheme = window.devaActiveTheme || 'cyan';
+    const strokeColors = {
+      cyan: '#38bdf8',
+      emerald: '#10b981',
+      violet: '#a855f7',
+      orange: '#f97316'
+    };
+    const accentCol = strokeColors[activeTheme] || '#38bdf8';
+
+    ctx.strokeStyle = accentCol;
+    ctx.lineWidth = 2.2;
+    ctx.stroke();
+
+    ctx.lineTo(w, h);
+    ctx.lineTo(0, h);
+    ctx.closePath();
+    const grad = ctx.createLinearGradient(0, 0, 0, h);
+    grad.addColorStop(0, accentCol.includes('#') ? accentCol + '55' : 'rgba(56,189,248,0.35)');
+    grad.addColorStop(1, 'rgba(11, 18, 38, 0.02)');
+    ctx.fillStyle = grad;
+    ctx.fill();
+  }
+
+  let tickCount = 0;
+  setInterval(() => {
+    const jitter = (Math.random() - 0.5) * 4;
+    const newPoint = Math.max(15, Math.min(94, baseTarget + jitter));
+    points.shift();
+    points.push(newPoint);
+
+    if (cpuVal) cpuVal.textContent = newPoint.toFixed(1);
+
+    tickCount++;
+    if (tickCount % 3 === 0) {
+      if (latencyVal) latencyVal.textContent = `Latency: ${Math.round(22 + Math.random() * 6)}ms`;
+      if (memVal && memFill) {
+        const m = (2.42 + Math.random() * 0.12).toFixed(2);
+        memVal.textContent = m;
+        memFill.style.width = Math.round((m / 4) * 100) + '%';
+      }
+    }
+
+    drawSparkline();
+  }, 900);
+
+  window.addEventListener('resize', drawSparkline, { passive: true });
+  drawSparkline();
+
+  let spikeTimer = null;
+  if (simSpikeBtn) {
+    simSpikeBtn.addEventListener('click', () => {
+      window.playDevaSound?.('click');
+      clearTimeout(spikeTimer);
+      baseTarget = 78;
+      if (clusterState) clusterState.textContent = 'Auto-scaling (HPA Triggered)';
+      if (cpuLoadTag) {
+        cpuLoadTag.textContent = 'High Load (Spike)';
+        cpuLoadTag.style.background = 'rgba(239, 68, 68, 0.2)';
+        cpuLoadTag.style.color = '#ef4444';
+      }
+      renderPods(28);
+      if (simLogText) {
+        simLogText.innerHTML = '<span style="color:#f87171">[ALERT]</span> Traffic spike detected: CPU &gt; 75%. HPA dynamically provisioned <b>4 additional pods</b> (28/28 active). Cluster auto-healed.';
+      }
+      window.playDevaSound?.('success');
+
+      spikeTimer = setTimeout(() => {
+        baseTarget = 34;
+        if (clusterState) clusterState.textContent = 'All Systems Normal';
+        if (cpuLoadTag) {
+          cpuLoadTag.textContent = 'Optimal';
+          cpuLoadTag.style.background = '';
+          cpuLoadTag.style.color = '';
+        }
+        renderPods(TOTAL_BASE_PODS);
+        if (simLogText) {
+          simLogText.innerHTML = '<span style="color:#34d399">[STABILIZED]</span> Traffic normalized. Scale-down completed. Cluster running 24 healthy pods in AWS ap-south-1.';
+        }
+      }, 7000);
+    });
+  }
+
+  if (simRolloutBtn) {
+    simRolloutBtn.addEventListener('click', () => {
+      window.playDevaSound?.('click');
+      if (simLogText) {
+        simLogText.innerHTML = '<span style="color:#38bdf8">[ROLLOUT]</span> Initiating progressive canary deployment: <code>image: v2.4.3</code>. Zero downtime target.';
+      }
+      const nodes = podGrid.querySelectorAll('.pod-node');
+      nodes.forEach((n, idx) => {
+        setTimeout(() => {
+          n.style.background = '#38bdf8';
+          n.style.transform = 'scale(1.25)';
+          setTimeout(() => {
+            n.style.background = '';
+            n.style.transform = '';
+          }, 350);
+        }, idx * 45);
+      });
+
+      setTimeout(() => {
+        window.playDevaSound?.('success');
+        if (simLogText) {
+          simLogText.innerHTML = '<span style="color:#34d399">[SUCCESS]</span> Zero-downtime rollout complete. 24/24 pods updated to <code>v2.4.3</code>. 0 HTTP 5xx errors.';
+        }
+      }, nodes.length * 45 + 350);
+    });
+  }
+
+  if (simScanBtn) {
+    simScanBtn.addEventListener('click', () => {
+      window.playDevaSound?.('terminal');
+      if (simLogText) {
+        simLogText.innerHTML = '<span style="color:#fbbf24">[AUDIT]</span> Running Trivy &amp; SonarQube container vulnerability security scan across 14 images...';
+      }
+      setTimeout(() => {
+        window.playDevaSound?.('success');
+        if (simLogText) {
+          simLogText.innerHTML = '<span style="color:#34d399">[CLEAN]</span> Security scan complete: <b>0 Critical, 0 High CVEs</b> detected. CIS benchmark 98% passed.';
+        }
+      }, 850);
+    });
+  }
+})();
+
+// 10. Project Architecture Specs Lightbox Modal
+(function initProjectModal() {
+  const modal = document.getElementById('projectModal');
+  const backdrop = document.getElementById('projectBackdrop');
+  const closeBtn = document.getElementById('projectClose');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalBadge = document.getElementById('modalBadge');
+  const modalDesc = document.getElementById('modalDesc');
+  const modalArchFlow = document.getElementById('modalArchFlow');
+  const modalSpecsList = document.getElementById('modalSpecsList');
+  const modalDeployCmd = document.getElementById('modalDeployCmd');
+  const copyCmdBtn = document.getElementById('copyCmdBtn');
+  const modalGithubLink = document.getElementById('modalGithubLink');
+
+  if (!modal || !modalTitle) return;
+
+  const PROJECT_DATA = {
+    'eventhub': {
+      title: 'EventHub — Event Management Platform',
+      badge: 'Full-Stack & Containerized',
+      desc: 'Interactive event ticketing and seating platform with complete containerized microservice topology.',
+      nodes: [
+        { title: 'React Client', sub: 'SPA Frontend' },
+        { title: 'Nginx Ingress', sub: 'Reverse Proxy' },
+        { title: 'Node.js App', sub: 'Docker Pods' },
+        { title: 'PostgreSQL', sub: 'Relational DB' },
+        { title: 'AWS S3', sub: 'Static Media' }
+      ],
+      specs: [
+        'Multi-stage Docker build pipeline reducing final image size from 460MB to 74MB.',
+        'Kubernetes manifests covering Deployments, ClusterIP Services, ConfigMaps, and Secrets.',
+        'Horizontal Pod Autoscaler (HPA) configured to scale between 2 and 8 replicas based on CPU target.',
+        'Automated GitHub Actions workflow for pull request linting and Docker Hub automated push.'
+      ],
+      deployCmd: 'kubectl apply -f https://raw.githubusercontent.com/devaghanekar23/EventHub/main/k8s/deployment.yaml',
+      github: 'https://github.com/devaghanekar23'
+    },
+    'weather': {
+      title: 'Weather App — Kubernetes Helm Orchestration',
+      badge: 'Cloud Native & Helm',
+      desc: 'Real-time weather tracking application packaged with custom parameterized Helm charts on Kubernetes.',
+      nodes: [
+        { title: 'Web App', sub: 'Responsive UI' },
+        { title: 'Route 53', sub: 'DNS Routing' },
+        { title: 'AWS ALB', sub: 'Load Balancer' },
+        { title: 'K8s Cluster', sub: 'Helm Release' },
+        { title: 'Amazon ECR', sub: 'Private Registry' }
+      ],
+      specs: [
+        'Custom Helm Chart with dynamic environment values for Dev, Staging, and Production tiers.',
+        'Integrated with Amazon ECR for private, scanned container image storage and automated pull secrets.',
+        'Configured Readiness and Liveness probes with HTTP health endpoints for graceful fault tolerance.',
+        'Rolling update deployment strategy configured with maxSurge: 25% and maxUnavailable: 0.'
+      ],
+      deployCmd: 'helm upgrade --install weather-app ./helm -f values.prod.yaml --namespace production',
+      github: 'https://github.com/devaghanekar23'
+    },
+    'hearth': {
+      title: 'Hearth Recipe App — AWS ECS & Fargate',
+      badge: 'Serverless Containers',
+      desc: 'High-availability recipe curation application deployed entirely on serverless AWS ECS Fargate clusters.',
+      nodes: [
+        { title: 'End User', sub: 'HTTPS Request' },
+        { title: 'CloudFront', sub: 'CDN Edge' },
+        { title: 'AWS ALB', sub: 'Target Group' },
+        { title: 'ECS Fargate', sub: 'Serverless Tasks' },
+        { title: 'Amazon ECR', sub: 'Image Registry' }
+      ],
+      specs: [
+        'Serverless container execution via AWS Fargate eliminating underlying EC2 instance maintenance.',
+        'Multi-AZ architecture deployed across ap-south-1a and ap-south-1b for zero single points of failure.',
+        'Optimized Docker container security running with non-root user and minimal alpine base layer.',
+        'Integrated AWS CloudWatch log groups for centralized application observability and alerts.'
+      ],
+      deployCmd: 'aws ecs update-service --cluster hearth-cluster --service hearth-svc --force-new-deployment',
+      github: 'https://github.com/devaghanekar23'
+    },
+    'devops-fund': {
+      title: 'DevOps Fundamentals — Infrastructure as Code',
+      badge: 'IaC & AWS Cloud',
+      desc: 'Automated AWS cloud infrastructure provisioning using Terraform HCL scripts and GitHub Actions.',
+      nodes: [
+        { title: 'Developer', sub: 'Terraform Code' },
+        { title: 'GitHub CI', sub: 'Validation & Plan' },
+        { title: 'AWS VPC', sub: 'Isolated Network' },
+        { title: 'Subnets', sub: 'Public / Private' },
+        { title: 'Route Tables', sub: 'Internet Gateway' }
+      ],
+      specs: [
+        'Modular Terraform HCL code managing VPC, subnets, NAT gateways, and custom security groups.',
+        'Remote state locking configured with Amazon S3 and DynamoDB to prevent concurrent pipeline conflicts.',
+        'Automated CI pipeline enforcing terraform fmt, terraform validate, and tflint on every pull request.',
+        'Strict least-privilege security group ingress/egress rules adhering to CIS Cloud benchmarks.'
+      ],
+      deployCmd: 'terraform init && terraform plan -out=tfplan && terraform apply tfplan',
+      github: 'https://github.com/devaghanekar23'
+    },
+    'jenkins-fund': {
+      title: 'Jenkins CI/CD Pipeline Automation',
+      badge: 'CI/CD & Automation',
+      desc: 'Declarative Jenkins pipeline automating build, test, and release cycles from source code to artifact repository.',
+      nodes: [
+        { title: 'Git Push', sub: 'Source Code' },
+        { title: 'Webhook', sub: 'Instant Trigger' },
+        { title: 'Jenkins Master', sub: 'Pipeline Engine' },
+        { title: 'Build Agent', sub: 'Unit Tests & Build' },
+        { title: 'Artifact Store', sub: 'Verified Build' }
+      ],
+      specs: [
+        'Declarative Jenkinsfile with distinct Build, Unit Test, Security Audit, and Package stages.',
+        'Webhook automation responding instantly to GitHub commits and pull request events.',
+        'Jenkins Credentials store integration to prevent plaintext secrets leakage in console build logs.',
+        'Automated post-build actions including test report generation and artifact archiving.'
+      ],
+      deployCmd: 'jenkins-cli build "DevOps-Fundamentals-Pipeline" -s -v',
+      github: 'https://github.com/devaghanekar23'
+    },
+    'k8s-project': {
+      title: 'Automated Kubernetes Deployment Pipeline',
+      badge: 'Kubernetes & CI/CD',
+      desc: 'End-to-end continuous delivery pipeline automating Docker builds and Kubernetes cluster rollouts.',
+      nodes: [
+        { title: 'Jenkins CI', sub: 'Pipeline Runner' },
+        { title: 'Docker Engine', sub: 'Image Build' },
+        { title: 'Kube Controller', sub: 'Deployment Apply' },
+        { title: 'K8s Cluster', sub: 'Worker Nodes' },
+        { title: 'ClusterIP / Ingress', sub: 'Live Service' }
+      ],
+      specs: [
+        'Complete integration connecting Jenkins build agents directly to Kubernetes cluster APIs.',
+        'Automated zero-downtime deployment rollouts verified with kubectl rollout status monitoring.',
+        'Configured NodePort and Ingress controllers for clean external application access.',
+        'Automated deployment rollback logic triggered if readiness probe fails during rollout.'
+      ],
+      deployCmd: 'kubectl apply -f k8s/ && kubectl rollout status deployment/app-deployment',
+      github: 'https://github.com/devaghanekar23'
+    }
+  };
+
+  function openProjectModal(key) {
+    const data = PROJECT_DATA[key] || PROJECT_DATA['eventhub'];
+    modalTitle.textContent = data.title;
+    modalBadge.textContent = data.badge;
+    modalDesc.textContent = data.desc;
+    modalDeployCmd.textContent = data.deployCmd;
+    if (modalGithubLink) modalGithubLink.href = data.github;
+
+    modalArchFlow.innerHTML = '';
+    data.nodes.forEach((node, i) => {
+      const nodeEl = document.createElement('div');
+      nodeEl.className = 'arch-node';
+      nodeEl.innerHTML = `<span class="arch-node-title">${node.title}</span><span class="arch-node-sub">${node.sub}</span>`;
+      modalArchFlow.appendChild(nodeEl);
+      if (i < data.nodes.length - 1) {
+        const arrow = document.createElement('i');
+        arrow.className = 'fas fa-arrow-right arch-arrow';
+        modalArchFlow.appendChild(arrow);
+      }
+    });
+
+    modalSpecsList.innerHTML = '';
+    data.specs.forEach(spec => {
+      const li = document.createElement('li');
+      li.innerHTML = `<i class="fas fa-check-circle"></i> <span>${spec}</span>`;
+      modalSpecsList.appendChild(li);
+    });
+
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    window.playDevaSound?.('click');
+  }
+
+  function closeProjectModal() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.spec-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const proj = btn.dataset.project || 'eventhub';
+      openProjectModal(proj);
+    });
+  });
+
+  if (copyCmdBtn) {
+    copyCmdBtn.addEventListener('click', async () => {
+      const cmd = modalDeployCmd.textContent;
+      try {
+        if (navigator.clipboard) await navigator.clipboard.writeText(cmd);
+        copyCmdBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        window.playDevaSound?.('success');
+        setTimeout(() => { copyCmdBtn.innerHTML = '<i class="far fa-copy"></i> Copy'; }, 2200);
+      } catch (_) {}
+    });
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', closeProjectModal);
+  if (backdrop) backdrop.addEventListener('click', closeProjectModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) {
+      closeProjectModal();
+    }
+  });
+})();
+
+// 11. DevOps Robot & Orbiting Tools Ecosystem
+(function initRobotEcosystem() {
+  const orbitTrack = document.getElementById('orbitTrack');
+  const botSpeechText = document.getElementById('botSpeechText');
+  const botCenterpiece = document.getElementById('botCenterpiece');
+  const pauseBtn = document.getElementById('orbitPauseBtn');
+  const pauseText = document.getElementById('orbitPauseText');
+  const speedBtn = document.getElementById('orbitSpeedBtn');
+  const speedText = document.getElementById('orbitSpeedText');
+  const waveBtn = document.getElementById('orbitWaveBtn');
+  const orbitItems = document.querySelectorAll('.orbit-item');
+
+  if (!orbitTrack || !botSpeechText) return;
+
+  const TOOL_DATA = {
+    'aws': '☁️ AWS: Managing VPC networks, ECR registries, ECS/EKS clusters, and automated cloud deployments.',
+    'linux': '🐧 Linux: System administration, shell automation, SSH management, and systemd service tuning.',
+    'jenkins': '🏗️ Jenkins: Declarative Jenkinsfile pipelines, automated unit testing, and webhook-driven artifact releases.',
+    'docker': '🐳 Docker: Multi-stage container builds, alpine image minimization, and containerized microservices.',
+    'k8s': '☸️ Kubernetes: Managing Helm charts, pod replication, self-healing rollouts, and horizontal autoscaling (HPA).',
+    'ansible': '📜 Ansible: Idempotent YAML playbooks, automated server provisioning, and multi-node fleet management.',
+    'terraform': '🧱 Terraform: Infrastructure as Code (IaC) provisioning AWS VPCs, subnets, and security groups with remote state.',
+    'prometheus': '🔥 Prometheus: Time-series cluster telemetry, metrics scraping, PromQL queries, and proactive alerts.',
+    'grafana': '📈 Grafana: Dynamic real-time cluster visualization, performance monitoring, and SLO tracking dashboards.',
+    'git': '🌿 Git: Branching strategies, atomic commits, fast-forward rebasing, and clean repo hygiene.',
+    'github': '🐙 GitHub: Automated CI/CD Actions, pull request code review workflows, and project issue tracking.'
+  };
+
+  const DEFAULT_SPEECH = "Hi! I coordinate Devendra's DevOps stack. Hover over any orbiting tool to inspect its role!";
+  let revertTimer = null;
+  let isManuallyPaused = false;
+
+  orbitItems.forEach(item => {
+    const tool = item.dataset.tool;
+    item.addEventListener('mouseenter', () => {
+      clearTimeout(revertTimer);
+      orbitTrack.classList.add('paused');
+      window.playDevaSound?.('click');
+      if (TOOL_DATA[tool]) {
+        botSpeechText.textContent = TOOL_DATA[tool];
+      }
+    });
+
+    item.addEventListener('mouseleave', () => {
+      if (!isManuallyPaused) {
+        orbitTrack.classList.remove('paused');
+      }
+      revertTimer = setTimeout(() => {
+        botSpeechText.textContent = DEFAULT_SPEECH;
+      }, 2500);
+    });
+
+    item.addEventListener('click', () => {
+      window.playDevaSound?.('success');
+      const toastEl = document.getElementById('toast');
+      if (toastEl) {
+        toastEl.innerHTML = `<i class="fas fa-microchip"></i> <span>DevOps Tool: <b>${item.querySelector('.orbit-label')?.textContent || tool.toUpperCase()}</b> Active</span>`;
+        toastEl.classList.add('show');
+        setTimeout(() => toastEl.classList.remove('show'), 2000);
+      }
+    });
+  });
+
+  // Pause / Resume Button
+  if (pauseBtn) {
+    pauseBtn.addEventListener('click', () => {
+      isManuallyPaused = !isManuallyPaused;
+      orbitTrack.classList.toggle('paused', isManuallyPaused);
+      if (pauseText) pauseText.textContent = isManuallyPaused ? 'Resume Orbit' : 'Pause Orbit';
+      const icon = pauseBtn.querySelector('i');
+      if (icon) icon.className = isManuallyPaused ? 'fas fa-play' : 'fas fa-pause';
+      window.playDevaSound?.('click');
+    });
+  }
+
+  // Speed Toggle
+  let isFast = false;
+  if (speedBtn) {
+    speedBtn.addEventListener('click', () => {
+      isFast = !isFast;
+      orbitTrack.classList.toggle('speed-up', isFast);
+      if (speedText) speedText.textContent = isFast ? '1x Normal' : '2x Speed';
+      window.playDevaSound?.('click');
+    });
+  }
+
+  // Say Hello Wave Button
+  function triggerBotWave() {
+    window.playDevaSound?.('success');
+    if (botCenterpiece) {
+      botCenterpiece.style.transform = 'scale(1.15) rotate(-3deg)';
+      setTimeout(() => {
+        botCenterpiece.style.transform = 'scale(1.15) rotate(3deg)';
+        setTimeout(() => { botCenterpiece.style.transform = ''; }, 350);
+      }, 250);
+    }
+    botSpeechText.textContent = "👋 Devendra's Cloud Bot reporting for duty! All 11 DevOps tools running at 100% capacity.";
+    clearTimeout(revertTimer);
+    revertTimer = setTimeout(() => {
+      botSpeechText.textContent = DEFAULT_SPEECH;
+    }, 4500);
+  }
+
+  if (waveBtn) waveBtn.addEventListener('click', triggerBotWave);
+  if (botCenterpiece) botCenterpiece.addEventListener('click', triggerBotWave);
 })();
